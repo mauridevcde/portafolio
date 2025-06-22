@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio de Mauricio González - Desarrollador Full Stack con experiencia en React, Node.js y TypeScript">
+    <meta name="keywords" content="Desarrollador Full Stack, React, Node.js, TypeScript, MongoDB, MySQL, Paraguay">
+    <meta name="author" content="Mauricio González">
+    <title>Mauricio González | Desarrollador Full Stack - React, Node.js, TypeScript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Botón Dark Mode -->
+    <button id="darkModeToggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <!-- Header/Navbar -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">MG</a>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#about">Sobre mí</a></li>
+                    <li><a href="#skills">Habilidades</a></li>
+                    <li><a href="#experience">Experiencia</a></li>
+                    <li><a href="#projects">Proyectos</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section con Particles.js -->
+    <section id="home" class="hero">
+        <div id="particles-js"></div> <!-- Contenedor para las partículas -->
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animated-text">Hola, soy <span>Mauricio González</span></h1>
+                <h2 class="typewriter">Desarrollador Full Stack</h2>
+                <p>Especializado en React, Node.js, TypeScript y bases de datos relacionales</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">Ver proyectos</a>
+                    <a href="#contact" class="btn btn-secondary">Contactarme</a>
+                    <a href="CV_Mauricio_Gonzalez.pdf" download class="btn btn-primary">
+                        <i class="fas fa-download"></i> Descargar CV
+                    </a>
+                </div>
+                <div class="hero-keywords">
+                    <span>React</span>
+                    <span>Node.js</span>
+                    <span>TypeScript</span>
+                    <span>MongoDB</span>
+                    <span>MySQL</span>
+                    <span>APIs REST</span>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper">
+                    <img src="assets/BlueModernProfile Picture.png" alt="Mauricio González - Desarrollador Full Stack" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">Sobre <span>Mí</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Desarrollador Full Stack con 3+ años de experiencia</h3>
+                    <p>Apasionado por crear soluciones tecnológicas robustas y escalables. Especializado en el desarrollo de aplicaciones web con React, Node.js y TypeScript, con experiencia en el manejo de bases de datos tanto SQL como NoSQL.</p>
+                    <p>Comprometido con la calidad del código, las buenas prácticas de desarrollo y el trabajo en equipo bajo metodologías ágiles.</p>
+                    <div class="about-info">
+                        <div>
+                            <span>Nombre:</span>
+                            <p>Mauricio González</p>
+                        </div>
+                        <div>
+                            <span>Email:</span>
+                            <p>mauridevcde@gmail.com</p>
+                        </div>
+                        <div>
+                            <span>Ubicación:</span>
+                            <p>Paraguay</p>
+                        </div>
+                        <div>
+                            <span>GitHub:</span>
+                            <p><a href="https://github.com/mauridevcde" target="_blank">github.com/mauridevcde</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-circle">
+                            <i class="fas fa-people-group"></i>
+                        </div>
+                        <p>Trabajo en equipo</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-circle">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <p>Resolución de problemas</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-circle">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <p>Comunicación efectiva</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <h2 class="section-title">Mis <span>Habilidades</span></h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Lenguajes</h3>
+                    <ul>
+                        <li>TypeScript</li>
+                        <li>JavaScript</li>
+                        <li>Dart</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Frontend</h3>
+                    <ul>
+                        <li>React/Next.js</li>
+                        <li>HTML5/CSS3</li>
+                        <li>TailwindCSS</li>
+                        <li>Flutter</li>
+                        <li>PrimeReact</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> Backend</h3>
+                    <ul>
+                        <li>Node.js</li>
+                        <li>Express.js</li>
+                        <li>MongoDB</li>
+                        <li>MySQL</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Herramientas</h3>
+                    <ul>
+                        <li>Git/GitHub</li>
+                        <li>Postman</li>
+                        <li>Zod</li>
+                        <li>JWT</li>
+                        <li>Scrum/Agile</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience">
+        <div class="container">
+            <h2 class="section-title">Mi <span>Experiencia</span></h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Nov 2023 - Dic 2025</div>
+                    <div class="timeline-content">
+                        <h3>Desarrollador Web Full Stack</h3>
+                        <h4>GEN Z, Paraguay</h4>
+                        <ul>
+                            <li>Desarrollo de aplicaciones web con React, Node.js y Express</li>
+                            <li>Implementación de APIs REST con validación usando Zod</li>
+                            <li>Modelado de bases de datos en MySQL y MongoDB</li>
+                            <li>Desarrollo de aplicaciones móviles con Flutter</li>
+                            <li>Aplicación de autenticación con JWT y manejo de roles</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Ene 2023 - Nov 2023</div>
+                    <div class="timeline-content">
+                        <h3>Desarrollador Web Full Stack</h3>
+                        <h4>CDE – Internet, Paraguay</h4>
+                        <ul>
+                            <li>Desarrollo de aplicaciones Web con JavaScript Vanilla</li>
+                            <li>Implementación de APIs Rest con autenticación JWT por roles</li>
+                            <li>Manejo de lógica de negocios</li>
+                            <li>Modelado de base de datos mongoDB con Mongoose</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title">Mis <span>Proyectos</span></h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/600x400?text=Sistema+Veterinario" alt="Sistema de Gestión Veterinaria">
+                    </div>
+                    <div class="project-content">
+                        <h3>Sistema de Gestión Veterinaria</h3>
+                        <p>Proyecto full stack con NextJS, React, Node.js, Express y MySQL. Incluye módulos completos de gestión con autenticación JWT.</p>
+                        <div class="project-tech">
+                            <span>Next.js</span>
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mauriciogonzalez" target="_blank"><i class="fab fa-github"></i> Código</a>
+                            <a href="#" class="disabled">Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/600x400?text=App+Control+Stock" alt="App Control de Stock">
+                    </div>
+                    <div class="project-content">
+                        <h3>App Control de Stock</h3>
+                        <p>Aplicación móvil desarrollada con Flutter para gestión de inventario, conectada a backend con Node.js y MongoDB.</p>
+                        <div class="project-tech">
+                            <span>Flutter</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                            <span>JWT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="disabled">Código</a>
+                            <a href="#" class="disabled">Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Recomendaciones -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Recomendaciones</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Mauricio demostró gran capacidad técnica y compromiso en nuestros proyectos. Su habilidad para resolver problemas complejos fue invaluable para nuestro equipo."</p>
+                        <div class="testimonial-author">
+                            <strong>Juan Pérez</strong>
+                            <span>CTO en GEN Z</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Trabajar con Mauricio fue una excelente experiencia. Su conocimiento en desarrollo Full Stack nos ayudó a implementar soluciones robustas y escalables."</p>
+                        <div class="testimonial-author">
+                            <strong>María Gómez</strong>
+                            <span>Gerente de Proyectos en CDE Internet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Disponibilidad -->
+    <section class="section availability">
+        <div class="container">
+            <div class="availability-content">
+                <i class="fas fa-calendar-check"></i>
+                <div>
+                    <h3>Disponibilidad inmediata</h3>
+                    <p>Actualmente buscando nuevas oportunidades como Desarrollador Full Stack</p>
+                </div>
+                <a href="#contact" class="btn btn-primary">Contrátame</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Contáct<span>ame</span></h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>mauridevcde@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Teléfono</h3>
+                            <p>+595 993 510 816</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <h3>LinkedIn</h3>
+                            <p><a href="https://www.linkedin.com/in/ing-mauricio-gonzalez" target="_blank">linkedin.com/in/ing-mauricio-gonzalez</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <div>
+                            <h3>GitHub</h3>
+                            <p><a href="https://github.com/mauridevcde" target="_blank">github.com/mauridevcde</a></p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Tu email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" placeholder="Asunto">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="Tu mensaje" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer con Schema.org -->
+    <footer class="footer" itemscope itemtype="https://schema.org/Person">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">MG</div>
+                <div class="footer-info" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                    <span itemprop="name"><strong>Mauricio González</strong></span>
+                    <span itemprop="jobTitle">Desarrollador Full Stack</span>
+                    <span itemprop="addressLocality">Paraguay</span>
+                    <span itemprop="email">mauridevcde@gmail.com</span>
+                    <span itemprop="telephone">+595 993 510 816</span>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/mauridevcde" target="_blank" itemprop="sameAs"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/ing-mauricio-gonzalez" target="_blank" itemprop="sameAs"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:mauridevcde@gmail.com" itemprop="email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Mauricio González. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
