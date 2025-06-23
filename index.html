@@ -268,27 +268,47 @@
       <div class="container">
         <h2 class="section-title">Mis <span>Proyectos</span></h2>
         <div class="projects-grid">
+          <!-- Proyecto 1 - Sistema Veterinario -->
           <div class="project-card">
-            <div class="project-carousel">
+            <div class="project-carousel" id="carousel-vet">
               <div class="carousel-container">
-                <img src="./assets/proyectos/front//1.png" alt="Proyecto 1" class="active" />
-                <img src="./assets/proyectos/front/2.png" alt="Proyecto 2" />
-                <img src="./assets/proyectos/front/3.png" alt="Proyecto 3" />
-                <img src="./assets/proyectos/front/4.png" alt="Proyecto 4" />
+                <img
+                  src="./assets/proyectos/sisPet-front/1.png"
+                  alt="Veterinaria 1"
+                  class="active"
+                />
+                <img
+                  src="./assets/proyectos/sisPet-front/2.png"
+                  alt="Veterinaria 2"
+                />
+                <img
+                  src="./assets/proyectos/sisPet-front/3.png"
+                  alt="Veterinaria 3"
+                />
+                <img
+                  src="./assets/proyectos/sisPet-front/4.png"
+                  alt="Veterinaria 4"
+                />
               </div>
-              <button class="carousel-btn prev">&#10094;</button>
-              <button class="carousel-btn next">&#10095;</button>
+              <button class="carousel-btn prev" data-carousel="vet">
+                &#10094;
+              </button>
+              <button class="carousel-btn next" data-carousel="vet">
+                &#10095;
+              </button>
             </div>
             <div class="project-content">
               <h3>FrontEnd Sistema de Gestión Veterinaria</h3>
               <p>
-                Proyecto full stack con NextJS, React, Node.js, Express y MySQL.
-                Incluye módulos completos de gestión con autenticación JWT.
-                Proyecto de gestion veterinaria con funcionalidades de
-                administración de pacientes(animales) asociadas al cliente,
-                cirugias, vacunaciones, consultas, productos y servicios, además
-                de funcionalidades de administración de usuarios, roles y
-                permisos.
+                Frontend desarrollado con <strong>Next.js</strong> y
+                <strong>React</strong>, con una interfaz moderna y responsiva.
+                Se utilizan <strong>Next Middleware</strong> para proteger
+                rutas, <strong>Zustand</strong> para el manejo del estado
+                global, y <strong>TanStack Query</strong> junto con
+                <strong>Axios</strong> para la gestión eficiente de llamadas a
+                la API. La aplicación está conectada de forma segura al backend
+                usando <strong>tokens de autenticación</strong> para ofrecer una
+                experiencia fluida y protegida al usuario.
               </p>
               <div class="project-tech">
                 <span>Next.js</span>
@@ -298,35 +318,69 @@
                 <span>Jwt</span>
               </div>
               <div class="project-links">
-                <a href="https://github.com/mauriciogonzalez" target="_blank"
+                <a
+                  href="https://github.com/mauridevcde/Front_sis_vet"
+                  target="_blank"
                   ><i class="fab fa-github"></i> Código</a
                 >
-                <a href="#" class="disabled">Demo</a>
               </div>
             </div>
           </div>
+
+          <!-- Proyecto 2 - App Control de Stock -->
           <div class="project-card">
-            <div class="project-image">
-              <img
-                src="https://via.placeholder.com/600x400?text=App+Control+Stock"
-                alt="App Control de Stock"
-              />
+            <div class="project-carousel" id="carousel-stock">
+              <div class="carousel-container">
+                <img
+                  src="./assets/proyectos/sisPet-back/1.png"
+                  alt="Stock App 1"
+                  class="active"
+                />
+                <img
+                  src="./assets/proyectos/sisPet-back/2.png"
+                  alt="Stock App 2"
+                />
+                <img
+                  src="./assets/proyectos/sisPet-back/3.png"
+                  alt="Stock App 3"
+                />
+              </div>
+              <button class="carousel-btn prev" data-carousel="stock">
+                &#10094;
+              </button>
+              <button class="carousel-btn next" data-carousel="stock">
+                &#10095;
+              </button>
             </div>
             <div class="project-content">
-              <h3>App Control de Stock</h3>
+              <h3>BackEnd Sistema de Gestión Veterinaria</h3>
               <p>
-                Aplicación móvil desarrollada con Flutter para gestión de
-                inventario, conectada a backend con Node.js y MongoDB.
+                Backend desarrollado con <strong>Node.js</strong> y
+                <strong>Express</strong>, utilizando
+                <strong>TypeScript</strong> para una estructura tipada y
+                mantenible. Las rutas están protegidas mediante
+                <strong>tokens de autenticación</strong>, y las validaciones de
+                datos se realizan con <strong>Zod</strong>. El proyecto usa
+                <strong>MySQL2</strong> con un modelo relacional que conecta
+                entidades como
+                <strong>mascotas, veterinarios, productos y consultas</strong>.
+                También se implementaron
+                <strong>middlewares personalizados</strong> para la validación y
+                el control de acceso.
               </p>
               <div class="project-tech">
-                <span>Flutter</span>
+                <span>MySql2</span>
                 <span>Node.js</span>
-                <span>MongoDB</span>
+                <span>Express</span>
+                <span>Zod</span>
                 <span>JWT</span>
               </div>
               <div class="project-links">
-                <a href="#" class="disabled">Código</a>
-                <a href="#" class="disabled">Demo</a>
+                <a
+                  href="https://github.com/mauridevcde/backend_sis_vet"
+                  target="_blank"
+                  ><i class="fab fa-github"></i> Código</a
+                >
               </div>
             </div>
           </div>

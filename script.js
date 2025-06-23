@@ -1,49 +1,56 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const carousel = document.querySelector(".project-carousel");
-  const container = document.querySelector(".carousel-container");
-  const images = document.querySelectorAll(".carousel-container img");
-  const prevBtn = document.querySelector(".prev");
-  const nextBtn = document.querySelector(".next");
-  let currentIndex = 0;
-  let isAnimating = false;
+  // Inicializar todos los carruseles
+  document.querySelectorAll(".project-carousel").forEach((carousel) => {
+    const carouselId = carousel.id.replace("carousel-", "");
+    const container = carousel.querySelector(".carousel-container");
+    const images = carousel.querySelectorAll(".carousel-container img");
+    const prevBtn = carousel.querySelector(
+      `.prev[data-carousel="${carouselId}"]`
+    );
+    const nextBtn = carousel.querySelector(
+      `.next[data-carousel="${carouselId}"]`
+    );
+    let currentIndex = 0;
+    let isAnimating = false;
 
-  // Mostrar la primera imagen
-  images[currentIndex].classList.add("active");
-
-  // Función para cambiar de imagen
-  function changeImage(direction) {
-    if (isAnimating) return;
-
-    isAnimating = true;
-
-    // Ocultar imagen actual
-    images[currentIndex].classList.remove("active");
-
-    // Calcular nuevo índice
-    currentIndex = (currentIndex + direction + images.length) % images.length;
-
-    // Mostrar nueva imagen
+    // Mostrar la primera imagen
     images[currentIndex].classList.add("active");
 
-    // Resetear flag de animación
-    setTimeout(() => {
-      isAnimating = false;
-    }, 500);
-  }
+    // Función para cambiar de imagen
+    function changeImage(direction) {
+      if (isAnimating) return;
 
-  // Event listeners para los botones
-  prevBtn.addEventListener("click", () => changeImage(-1));
-  nextBtn.addEventListener("click", () => changeImage(1));
+      isAnimating = true;
 
-  // Navegación con teclado
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") {
-      changeImage(-1);
-    } else if (e.key === "ArrowRight") {
-      changeImage(1);
+      // Ocultar imagen actual
+      images[currentIndex].classList.remove("active");
+
+      // Calcular nuevo índice
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+
+      // Mostrar nueva imagen
+      images[currentIndex].classList.add("active");
+
+      // Resetear flag de animación
+      setTimeout(() => {
+        isAnimating = false;
+      }, 500);
     }
-  });
 
+    // Event listeners para los botones
+    prevBtn.addEventListener("click", () => changeImage(-1));
+    nextBtn.addEventListener("click", () => changeImage(1));
+
+    // Navegación con teclado (solo para el carrusel que tiene el foco)
+    carousel.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        changeImage(-1);
+      } else if (e.key === "ArrowRight") {
+        changeImage(1);
+      }
+    });
+  });
+  
   if (document.getElementById("particles-js")) {
     particlesJS("particles-js", {
       particles: {
