@@ -3,24 +3,93 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://mauridevcde.pro/" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- Primary meta -->
+    <title>Mauricio González | Full Stack Developer — React · NestJS · TypeScript · Flutter</title>
     <meta
       name="description"
       content="Portafolio de Mauricio González — Full Stack Developer con 5+ años de experiencia en React, NestJS, Node.js, TypeScript y Flutter. Disponible para nuevas oportunidades."
     />
     <meta
       name="keywords"
-      content="Desarrollador Full Stack, React, Node.js, TypeScript, MongoDB, MySQL, Paraguay"
+      content="Desarrollador Full Stack, React, NestJS, Node.js, TypeScript, Flutter, PostgreSQL, MySQL, MongoDB, Docker, Paraguay, Ciudad del Este, Full Stack Developer"
     />
     <meta name="author" content="Mauricio González" />
-    <title>Mauricio González | Full Stack Developer — React · Node.js · TypeScript · Flutter</title>
+
+    <!-- Open Graph / LinkedIn -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://mauridevcde.pro/" />
+    <meta property="og:title" content="Mauricio González | Full Stack Developer — React · NestJS · Flutter" />
+    <meta property="og:description" content="Full Stack Developer con 5+ años de experiencia en React, NestJS, Node.js, TypeScript y Flutter. Disponible para nuevas oportunidades — presencial, híbrido o remoto." />
+    <meta property="og:image" content="https://mauridevcde.pro/assets/mauriciogonzalezpicture.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mauricio González — Full Stack Developer en Ciudad del Este, Paraguay" />
+    <meta property="og:locale" content="es_PY" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="profile:first_name" content="Mauricio" />
+    <meta property="profile:last_name" content="González" />
+    <meta property="profile:username" content="ing-mauricio-gonzalez" />
+
+    <!-- Twitter Card (WhatsApp, Discord, Slack también lo leen) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mauricio González | Full Stack Developer — React · NestJS · Flutter" />
+    <meta name="twitter:description" content="Full Stack Developer con 5+ años de experiencia en React, NestJS, Node.js, TypeScript y Flutter." />
+    <meta name="twitter:image" content="https://mauridevcde.pro/assets/mauriciogonzalezpicture.png" />
+    <meta name="twitter:image:alt" content="Mauricio González — Full Stack Developer" />
+
+    <!-- Google Fonts (carga paralela — @import eliminado de styles.css) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mauricio González",
+      "jobTitle": "Full Stack Developer",
+      "description": "Full Stack Developer con 5+ años de experiencia en React, NestJS, Node.js, TypeScript y Flutter. Disponible para posiciones presenciales, híbridas y remotas.",
+      "url": "https://mauridevcde.pro",
+      "image": "https://mauridevcde.pro/assets/mauriciogonzalezpicture.png",
+      "email": "mauridevcde@gmail.com",
+      "telephone": "+595993510816",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ciudad del Este",
+        "addressRegion": "Alto Paraná",
+        "addressCountry": "PY"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Universidad Privada del Este"
+      },
+      "knowsAbout": [
+        "React", "Next.js", "NestJS", "Node.js", "TypeScript",
+        "Flutter", "Dart", "PostgreSQL", "MySQL", "MongoDB", "Docker"
+      ],
+      "sameAs": [
+        "https://github.com/mauridevcde",
+        "https://www.linkedin.com/in/ing-mauricio-gonzalez"
+      ]
+    }
+    </script>
   </head>
   <body>
     <!-- Botón Dark Mode -->
@@ -51,6 +120,8 @@
         </button>
       </div>
     </header>
+
+    <main>
 
     <!-- Hero Section con Particles.js -->
     <section id="home" class="hero">
@@ -340,20 +411,23 @@
               <div class="carousel-container">
                 <img
                   src="./assets/proyectos/sisPet-front/1.png"
-                  alt="Veterinaria 1"
+                  alt="Sistema de Gestión Veterinaria - Dashboard principal con Next.js y React"
                   class="active"
                 />
                 <img
                   src="./assets/proyectos/sisPet-front/2.png"
-                  alt="Veterinaria 2"
+                  alt="Sistema de Gestión Veterinaria - Vista de citas y calendario"
+                  loading="lazy"
                 />
                 <img
                   src="./assets/proyectos/sisPet-front/3.png"
-                  alt="Veterinaria 3"
+                  alt="Sistema de Gestión Veterinaria - Módulo de mascotas y clientes"
+                  loading="lazy"
                 />
                 <img
                   src="./assets/proyectos/sisPet-front/4.png"
-                  alt="Veterinaria 4"
+                  alt="Sistema de Gestión Veterinaria - Panel de administración"
+                  loading="lazy"
                 />
               </div>
               <button class="carousel-btn prev" data-carousel="vet">
@@ -396,16 +470,18 @@
               <div class="carousel-container">
                 <img
                   src="./assets/proyectos/sisPet-back/1.png"
-                  alt="Stock App 1"
+                  alt="Backend Veterinaria - Estructura de API REST con Node.js y Express"
                   class="active"
                 />
                 <img
                   src="./assets/proyectos/sisPet-back/2.png"
-                  alt="Stock App 2"
+                  alt="Backend Veterinaria - Modelo de base de datos MySQL con TypeScript"
+                  loading="lazy"
                 />
                 <img
                   src="./assets/proyectos/sisPet-back/3.png"
-                  alt="Stock App 3"
+                  alt="Backend Veterinaria - Esquema de autenticación JWT y control de roles"
+                  loading="lazy"
                 />
               </div>
               <button class="carousel-btn prev" data-carousel="stock">
@@ -496,6 +572,8 @@
     </section>
 
     <!-- Footer con Schema.org -->
+    </main>
+
     <footer class="footer" itemscope itemtype="https://schema.org/Person">
       <div class="container">
         <div class="footer-content">
@@ -540,7 +618,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    <script src="script.js" defer></script>
   </body>
 </html>
