@@ -1,0 +1,36 @@
+name: Daily Blog Post
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # 9:00 UTC = 06:00 Paraguay (UTC-3)
+  workflow_dispatch:       # permite ejecución manual desde la UI de GitHub
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate blog post
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: node scripts/generate-post.js
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog/ sitemap.xml
+          git diff --cached --quiet || git commit -m "blog: auto-post $(date +%Y-%m-%d)"
+          git push
