@@ -1,27 +1,50 @@
-/* Variables para ambos modos */
+/* ==============================================
+   PALETA "CALM" - Tonos Tierra Orgánicos
+   ============================================== */
 :root {
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
-  --text-color: #1e293b;
-  --text-light: #64748b;
-  --bg-color: #f8fafc;
+  /* Colores principales - Modo Claro */
+  --bush: #1A2B24;
+  --sienna: #A0522D;
+  --oak: #C5B08D;
+  --cashmere: #E3D7C5;
+  --charcoal: #2D3132;
+
+  /* Alias semánticos para el sitio */
+  --primary-color: var(--sienna);
+  --primary-hover: #8B4513;
+  --secondary-color: var(--oak);
+  --accent-color: var(--bush);
+  
+  /* Fondos */
+  --bg-color: var(--cashmere);
   --card-bg: #ffffff;
   --header-bg: rgba(255, 255, 255, 0.95);
-  --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  
+  /* Texto */
+  --text-color: var(--charcoal);
+  --text-light: #5a5a5a;
+  
+  /* Sombras */
+  --shadow: 0 4px 16px rgba(26, 43, 36, 0.08);
   --transition: all 0.3s ease;
   --border-radius: 10px;
 }
 
-/* Variables para dark mode */
+/* Mode Oscuro - Mantiene la paleta Calm pero más clara */
 [data-theme="dark"] {
-  --primary-color: #60a5fa;
-  --primary-hover: #93c5fd;
-  --text-color: #f1f5f9;
-  --text-light: #94a3b8;
-  --bg-color: #0f172a;
-  --card-bg: #1e293b;
-  --header-bg: rgba(15, 23, 42, 0.95);
-  --shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --primary-color: var(--sienna);
+  --primary-hover: #C17A4E;
+  --secondary-color: var(--oak);
+  --accent-color: var(--cashmere);
+  
+  --bg-color: var(--bush);
+  --card-bg: #243D32;
+  --header-bg: rgba(26, 43, 36, 0.95);
+  
+  --text-color: var(--cashmere);
+  --text-light: #b8a896;
+  
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* Estilos del botón de dark mode */
@@ -143,7 +166,7 @@ section {
 .btn-primary:hover {
   background-color: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 8px 20px rgba(160, 82, 45, 0.3);
 }
 
 .btn-secondary {
@@ -257,8 +280,8 @@ section {
   align-items: center;
   background: linear-gradient(
     135deg,
-    rgba(37, 99, 235, 0.06) 0%,
-    rgba(37, 99, 235, 0.02) 100%
+    rgba(160, 82, 45, 0.06) 0%,
+    rgba(160, 82, 45, 0.02) 100%
   );
 }
 .hero {
@@ -609,7 +632,7 @@ section {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background-color: rgba(37, 99, 235, 0.08);
+  background-color: rgba(160, 82, 45, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -621,7 +644,7 @@ section {
 
 .stat-circle:hover {
   transform: scale(1.1);
-  background-color: rgba(37, 99, 235, 0.16);
+  background-color: rgba(160, 82, 45, 0.16);
 }
 
 .stat-circle i {
@@ -878,7 +901,7 @@ section {
 }
 
 .project-tech span {
-  background-color: rgba(37, 99, 235, 0.08);
+  background-color: rgba(160, 82, 45, 0.08);
   color: var(--primary-color);
   padding: 5px 10px;
   border-radius: 20px;
@@ -942,7 +965,7 @@ section {
   color: var(--primary-color);
   width: 50px;
   height: 50px;
-  background-color: rgba(37, 99, 235, 0.08);
+  background-color: rgba(160, 82, 45, 0.08);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -995,7 +1018,7 @@ section {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.2);
 }
 
 .form-group textarea {
@@ -1028,7 +1051,7 @@ section {
   top: 10px;
   left: 15px;
   font-size: 4rem;
-  color: rgba(37, 99, 235, 0.08);
+  color: rgba(160, 82, 45, 0.08);
   font-family: serif;
   line-height: 1;
 }
@@ -1133,7 +1156,7 @@ section {
 }
 
 .hero-keywords span {
-  background-color: rgba(37, 99, 235, 0.08);
+  background-color: rgba(160, 82, 45, 0.08);
   color: var(--primary-color);
   padding: 5px 15px;
   border-radius: 20px;

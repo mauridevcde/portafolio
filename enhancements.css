@@ -5,16 +5,17 @@
 
 /* ── 1. Design Tokens ─────────────────────────────────────────── */
 :root {
-  --gradient-primary:   linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-  --gradient-primary-r: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
-  --gradient-hero:      linear-gradient(135deg, rgba(37,99,235,.07) 0%, rgba(124,58,237,.04) 50%, rgba(37,99,235,.02) 100%);
+  /* Gradientes con paleta Calm - Sienna como color primario */
+  --gradient-primary:   linear-gradient(135deg, #A0522D 0%, #8B4513 100%);
+  --gradient-primary-r: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  --gradient-hero:      linear-gradient(135deg, rgba(160,82,45,.08) 0%, rgba(139,69,19,.04) 50%, rgba(160,82,45,.02) 100%);
 
   --shadow-sm:   0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
   --shadow-md:   0 4px 16px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
   --shadow-lg:   0 20px 48px rgba(0,0,0,.12), 0 8px 20px rgba(0,0,0,.06);
-  --shadow-blue: 0 8px 32px rgba(37,99,235,.25);
-  --shadow-blue-lg: 0 20px 48px rgba(37,99,235,.28);
-  --glow-primary:  0 0 40px rgba(37,99,235,.18);
+  --shadow-blue: 0 8px 32px rgba(160,82,45,.25);
+  --shadow-blue-lg: 0 20px 48px rgba(160,82,45,.28);
+  --glow-primary:  0 0 40px rgba(160,82,45,.18);
 
   --border-subtle: rgba(0,0,0,.07);
 
@@ -24,10 +25,12 @@
 }
 
 [data-theme="dark"] {
-  --gradient-hero:   linear-gradient(135deg, rgba(37,99,235,.12) 0%, rgba(124,58,237,.08) 50%, rgba(37,99,235,.04) 100%);
+  --gradient-hero:   linear-gradient(135deg, rgba(160,82,45,.12) 0%, rgba(139,69,19,.08) 50%, rgba(160,82,45,.04) 100%);
   --border-subtle:   rgba(255,255,255,.07);
   --shadow-md:  0 4px 16px rgba(0,0,0,.35);
   --shadow-lg:  0 20px 48px rgba(0,0,0,.45);
+  --shadow-blue: 0 8px 32px rgba(160,82,45,.3);
+  --shadow-blue-lg: 0 20px 48px rgba(160,82,45,.35);
 }
 
 /* ── 2. Base & Typography ─────────────────────────────────────── */
@@ -36,11 +39,63 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── 3. Hero — dot-grid + gradient ───────────────────────────── */
+/* ── 3. Hero — Professional Ambient Mesh ───────────────────────── */
 .hero {
-  background: var(--gradient-hero);
+  background: 
+    radial-gradient(ellipse 90% 60% at 50% 35%, rgba(160,82,45,0.05) 0%, transparent 50%),
+    var(--bg-color);
   position: relative;
   overflow: hidden;
+}
+
+/* Ambient mesh gradients */
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Primary orb */
+.hero::before {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(160,82,45,0.12) 0%, transparent 70%);
+  top: -200px;
+  left: -100px;
+  animation: mesh-drift 20s ease-in-out infinite;
+}
+
+/* Secondary orb */
+.hero::after {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(197,176,141,0.08) 0%, transparent 70%);
+  bottom: -150px;
+  right: -100px;
+  animation: mesh-drift 25s ease-in-out infinite reverse;
+}
+
+@keyframes mesh-drift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(40px, -30px) rotate(5deg); }
+  66% { transform: translate(-20px, 20px) rotate(-3deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Mode oscuro — orbs más sutiles */
+[data-theme="dark"] .hero::before {
+  background: radial-gradient(circle, rgba(160,82,45,0.15) 0%, transparent 70%);
+  opacity: 0.5;
+}
+
+[data-theme="dark"] .hero::after {
+  background: radial-gradient(circle, rgba(197,176,141,0.1) 0%, transparent 70%);
+  opacity: 0.5;
 }
 
 /* dot grid watermark */
@@ -48,7 +103,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, rgba(37,99,235,.14) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(160,82,45,.14) 1px, transparent 0);
   background-size: 36px 36px;
   mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 30%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 30%, transparent 100%);
@@ -86,7 +141,7 @@ body {
   position: absolute;
   inset: -14px;
   border-radius: 50%;
-  border: 1px dashed rgba(37,99,235,.22);
+  border: 1px dashed rgba(160,82,45,.22);
   animation: ring-spin 22s linear infinite;
   pointer-events: none;
 }
@@ -101,7 +156,7 @@ body {
 }
 
 .profile-img {
-  border: 3px solid rgba(37,99,235,.25) !important;
+  border: 3px solid rgba(160,82,45,.25) !important;
   box-shadow: var(--shadow-blue-lg) !important;
   transition: box-shadow .35s var(--ease-out), transform .35s var(--ease-out) !important;
 }
@@ -132,7 +187,7 @@ body {
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%) !important;
+  background: var(--gradient-primary-r) !important;
   box-shadow: var(--shadow-blue-lg) !important;
   transform: translateY(-3px) !important;
 }
@@ -160,16 +215,16 @@ body {
 
 /* ── 7. Hero keyword chips ────────────────────────────────────── */
 .hero-keywords span {
-  border: 1px solid rgba(37,99,235,.2);
+  border: 1px solid rgba(160,82,45,.2);
   backdrop-filter: blur(8px);
   transition: background .2s ease, transform .2s var(--ease-spring), box-shadow .2s ease;
   cursor: default;
 }
 
 .hero-keywords span:hover {
-  background: rgba(37,99,235,.16) !important;
+  background: rgba(160,82,45,.16) !important;
   transform: translateY(-3px);
-  box-shadow: 0 4px 14px rgba(37,99,235,.2);
+  box-shadow: 0 4px 14px rgba(160,82,45,.2);
 }
 
 /* ── 8. Header ────────────────────────────────────────────────── */
@@ -199,7 +254,7 @@ body {
 .skill-category:hover {
   transform: translateY(-10px) !important;
   box-shadow: var(--shadow-lg) !important;
-  border-color: rgba(37,99,235,.18) !important;
+  border-color: rgba(160,82,45,.18) !important;
 }
 
 .skill-category:hover::before { transform: scaleX(1); }
@@ -213,24 +268,24 @@ body {
 .project-card:hover {
   transform: translateY(-14px) !important;
   box-shadow: var(--shadow-lg) !important;
-  border-color: rgba(37,99,235,.22) !important;
+  border-color: rgba(160,82,45,.22) !important;
 }
 
 /* Tech tags */
 .project-tech span {
-  background: rgba(37,99,235,.07);
+  background: rgba(160,82,45,.07);
   color: var(--primary-color);
   padding: 4px 12px;
   border-radius: 20px;
   font-size: .8rem;
   font-weight: 600;
-  border: 1px solid rgba(37,99,235,.15);
+  border: 1px solid rgba(160,82,45,.15);
   transition: background .18s ease, transform .18s var(--ease-spring);
   display: inline-block;
 }
 
 .project-tech span:hover {
-  background: rgba(37,99,235,.16);
+  background: rgba(160,82,45,.16);
   transform: scale(1.06);
 }
 
@@ -263,8 +318,8 @@ body {
 
 /* ── 13. Stat circles ─────────────────────────────────────────── */
 .stat-circle {
-  background: linear-gradient(145deg, rgba(37,99,235,.06) 0%, rgba(37,99,235,.13) 100%) !important;
-  border: 1px solid rgba(37,99,235,.12);
+  background: linear-gradient(145deg, rgba(160,82,45,.06) 0%, rgba(160,82,45,.13) 100%) !important;
+  border: 1px solid rgba(160,82,45,.12);
   transition: transform .35s var(--ease-spring), box-shadow .35s ease !important;
 }
 
@@ -387,7 +442,7 @@ body {
 
 /* ── 19. Carousel buttons ─────────────────────────────────────── */
 .carousel-btn {
-  background: rgba(37,99,235,.7) !important;
+  background: rgba(160,82,45,.7) !important;
   backdrop-filter: blur(4px);
   transition: background .2s ease, transform .2s var(--ease-spring) !important;
 }
