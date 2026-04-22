@@ -7,16 +7,21 @@
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
     <!-- Primary meta -->
-    <title>Mauricio González | Full Stack Developer — React · NestJS · TypeScript · Flutter</title>
+    <title>Mauricio González | Desarrollador Full Stack Remoto — React · NestJS · TypeScript</title>
     <meta
       name="description"
-      content="Portafolio de Mauricio González — Full Stack Developer con 5+ años de experiencia en React, NestJS, Node.js, TypeScript y Flutter. Disponible para nuevas oportunidades."
+      content="Desarrollador Full Stack con 5+ años de experiencia. Disponible para trabajo remoto en Latinoamérica. React, Next.js, NestJS, TypeScript, Flutter. Ciudad del Este, Paraguay."
     />
     <meta
       name="keywords"
-      content="Desarrollador Full Stack, React, NestJS, Node.js, TypeScript, Flutter, PostgreSQL, MySQL, MongoDB, Docker, Paraguay, Ciudad del Este, Full Stack Developer"
+      content="desarrollador full stack remoto, programador freelance paraguay, react developer latam, nestjs developer, desarrollo web latam, contratar desarrollador remoto, flutter developer, React, NestJS, Node.js, TypeScript, Flutter, PostgreSQL, MongoDB, Docker"
     />
     <meta name="author" content="Mauricio González" />
+    <!-- Geo -->
+    <meta name="geo.region" content="PY-3" />
+    <meta name="geo.placename" content="Ciudad del Este, Paraguay" />
+    <meta name="geo.position" content="-25.5167;-54.6167" />
+    <meta name="ICBM" content="-25.5167, -54.6167" />
 
     <!-- Open Graph / LinkedIn -->
     <meta property="og:type" content="profile" />
@@ -40,6 +45,14 @@
     <meta name="twitter:image" content="https://mauridevcde.pro/assets/mauriciogonzalezpicture.png" />
     <meta name="twitter:image:alt" content="Mauricio González — Full Stack Developer" />
 
+    <!-- PWA / Apple -->
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MG Dev" />
+    <link rel="apple-touch-icon" href="assets/mauriciogonzalezpicture.png" />
+    <link rel="manifest" href="manifest.json" />
+
     <!-- Google Fonts (carga paralela — @import eliminado de styles.css) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,13 +62,19 @@
     />
 
     <!-- Font Awesome -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
+    <!-- Preload LCP image -->
+    <link rel="preload" as="image" href="assets/mauriciogonzalezpicture.webp" type="image/webp" />
+
     <!-- Estilos -->
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="blog/blog.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='68' font-family='Arial' font-size='52' font-weight='bold' fill='white' text-anchor='middle'>MG</text></svg>" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
     <!-- JSON-LD Structured Data -->
@@ -87,6 +106,50 @@
       "sameAs": [
         "https://github.com/mauridevcde",
         "https://www.linkedin.com/in/ing-mauricio-gonzalez"
+      ],
+      "seeks": {
+        "@type": "Demand",
+        "name": "Posición Full Stack Developer remoto en Latinoamérica"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: Proyectos + Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "Sistema de Gestión Veterinaria — Frontend",
+          "description": "Aplicación web con Next.js y React. Protección de rutas mediante Next Middleware, gestión de estado con Zustand y autenticación JWT.",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "programmingLanguage": ["TypeScript", "React", "Next.js"],
+          "author": { "@type": "Person", "name": "Mauricio González", "url": "https://mauridevcde.pro" },
+          "codeRepository": "https://github.com/mauridevcde/Front_sis_vet"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Sistema de Gestión Veterinaria — Backend",
+          "description": "API REST con Node.js, Express y TypeScript. Validación de esquemas con Zod, autenticación JWT con control de roles y modelo relacional en MySQL2.",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "programmingLanguage": ["TypeScript", "Node.js", "Express"],
+          "author": { "@type": "Person", "name": "Mauricio González", "url": "https://mauridevcde.pro" },
+          "codeRepository": "https://github.com/mauridevcde/backend_sis_vet"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Inicio",    "item": "https://mauridevcde.pro/#home" },
+            { "@type": "ListItem", "position": 2, "name": "Sobre Mí", "item": "https://mauridevcde.pro/#about" },
+            { "@type": "ListItem", "position": 3, "name": "Proyectos","item": "https://mauridevcde.pro/#projects" },
+            { "@type": "ListItem", "position": 4, "name": "Servicios","item": "https://mauridevcde.pro/#services" },
+            { "@type": "ListItem", "position": 5, "name": "Blog",     "item": "https://mauridevcde.pro/blog/" },
+            { "@type": "ListItem", "position": 6, "name": "Contacto", "item": "https://mauridevcde.pro/#contact" }
+          ]
+        }
       ]
     }
     </script>
@@ -110,6 +173,8 @@
             <li><a href="#experience">Experiencia</a></li>
             <li><a href="#education">Educación</a></li>
             <li><a href="#projects">Proyectos</a></li>
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="blog/">Blog</a></li>
             <li><a href="#contact">Contacto</a></li>
           </ul>
         </nav>
@@ -158,11 +223,17 @@
         </div>
         <div class="hero-image">
           <div class="image-wrapper">
-            <img
-              src="assets/mauriciogonzalezpicture.png"
-              alt="Mauricio González - Desarrollador Full Stack"
-              class="profile-img"
-            />
+            <picture>
+              <source srcset="assets/mauriciogonzalezpicture.webp" type="image/webp" />
+              <img
+                src="assets/mauriciogonzalezpicture.png"
+                alt="Mauricio González - Desarrollador Full Stack Remoto"
+                class="profile-img"
+                width="400"
+                height="400"
+                fetchpriority="high"
+              />
+            </picture>
           </div>
         </div>
       </div>
@@ -212,7 +283,7 @@
               <div>
                 <span>GitHub:</span>
                 <p>
-                  <a href="https://github.com/mauridevcde" target="_blank"
+                  <a href="https://github.com/mauridevcde" target="_blank" rel="noopener noreferrer"
                     >github.com/mauridevcde</a
                   >
                 </p>
@@ -223,6 +294,7 @@
                   <a
                     href="https://www.linkedin.com/in/ing-mauricio-gonzalez"
                     target="_blank"
+                    rel="noopener noreferrer"
                     >ing-mauricio-gonzalez</a
                   >
                 </p>
@@ -409,26 +481,46 @@
           <div class="project-card">
             <div class="project-carousel" id="carousel-vet">
               <div class="carousel-container">
-                <img
-                  src="./assets/proyectos/sisPet-front/1.png"
-                  alt="Sistema de Gestión Veterinaria - Dashboard principal con Next.js y React"
-                  class="active"
-                />
-                <img
-                  src="./assets/proyectos/sisPet-front/2.png"
-                  alt="Sistema de Gestión Veterinaria - Vista de citas y calendario"
-                  loading="lazy"
-                />
-                <img
-                  src="./assets/proyectos/sisPet-front/3.png"
-                  alt="Sistema de Gestión Veterinaria - Módulo de mascotas y clientes"
-                  loading="lazy"
-                />
-                <img
-                  src="./assets/proyectos/sisPet-front/4.png"
-                  alt="Sistema de Gestión Veterinaria - Panel de administración"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcset="./assets/proyectos/sisPet-front/1.webp" type="image/webp" />
+                  <img
+                    src="./assets/proyectos/sisPet-front/1.png"
+                    alt="Sistema de Gestión Veterinaria - Dashboard principal con Next.js y React"
+                    class="active"
+                    width="1080"
+                    height="1080"
+                  />
+                </picture>
+                <picture>
+                  <source srcset="./assets/proyectos/sisPet-front/2.webp" type="image/webp" />
+                  <img
+                    src="./assets/proyectos/sisPet-front/2.png"
+                    alt="Sistema de Gestión Veterinaria - Vista de citas y calendario"
+                    loading="lazy"
+                    width="1080"
+                    height="1080"
+                  />
+                </picture>
+                <picture>
+                  <source srcset="./assets/proyectos/sisPet-front/3.webp" type="image/webp" />
+                  <img
+                    src="./assets/proyectos/sisPet-front/3.png"
+                    alt="Sistema de Gestión Veterinaria - Módulo de mascotas y clientes"
+                    loading="lazy"
+                    width="1080"
+                    height="1080"
+                  />
+                </picture>
+                <picture>
+                  <source srcset="./assets/proyectos/sisPet-front/4.webp" type="image/webp" />
+                  <img
+                    src="./assets/proyectos/sisPet-front/4.png"
+                    alt="Sistema de Gestión Veterinaria - Panel de administración"
+                    loading="lazy"
+                    width="1080"
+                    height="1080"
+                  />
+                </picture>
               </div>
               <button class="carousel-btn prev" data-carousel="vet">
                 &#10094;
@@ -458,6 +550,7 @@
                 <a
                   href="https://github.com/mauridevcde/Front_sis_vet"
                   target="_blank"
+                  rel="noopener noreferrer"
                   ><i class="fab fa-github"></i> Código</a
                 >
               </div>
@@ -468,21 +561,36 @@
           <div class="project-card">
             <div class="project-carousel" id="carousel-stock">
               <div class="carousel-container">
-                <img
-                  src="./assets/proyectos/sisPet-back/1.png"
-                  alt="Backend Veterinaria - Estructura de API REST con Node.js y Express"
-                  class="active"
-                />
-                <img
-                  src="./assets/proyectos/sisPet-back/2.png"
-                  alt="Backend Veterinaria - Modelo de base de datos MySQL con TypeScript"
-                  loading="lazy"
-                />
-                <img
-                  src="./assets/proyectos/sisPet-back/3.png"
-                  alt="Backend Veterinaria - Esquema de autenticación JWT y control de roles"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcset="./assets/proyectos/sisPet-back/1.webp" type="image/webp" />
+                  <img
+                    src="./assets/proyectos/sisPet-back/1.png"
+                    alt="Backend Veterinaria - Estructura de API REST con Node.js y Express"
+                    class="active"
+                    width="1080"
+                    height="1080"
+                  />
+                </picture>
+                <picture>
+                  <source srcset="./assets/proyectos/sisPet-back/2.webp" type="image/webp" />
+                  <img
+                    src="./assets/proyectos/sisPet-back/2.png"
+                    alt="Backend Veterinaria - Modelo de base de datos MySQL con TypeScript"
+                    loading="lazy"
+                    width="1080"
+                    height="1080"
+                  />
+                </picture>
+                <picture>
+                  <source srcset="./assets/proyectos/sisPet-back/3.webp" type="image/webp" />
+                  <img
+                    src="./assets/proyectos/sisPet-back/3.png"
+                    alt="Backend Veterinaria - Esquema de autenticación JWT y control de roles"
+                    loading="lazy"
+                    width="1080"
+                    height="1080"
+                  />
+                </picture>
               </div>
               <button class="carousel-btn prev" data-carousel="stock">
                 &#10094;
@@ -513,11 +621,70 @@
                 <a
                   href="https://github.com/mauridevcde/backend_sis_vet"
                   target="_blank"
+                  rel="noopener noreferrer"
                   ><i class="fab fa-github"></i> Código</a
                 >
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+      <div class="container">
+        <h2 class="section-title">Mis <span>Servicios</span></h2>
+        <p class="section-subtitle">Desarrollo de software a medida para startups y empresas · Trabajo remoto para toda Latinoamérica</p>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-globe"></i></div>
+            <h3>Desarrollo Web Full Stack</h3>
+            <p>Aplicaciones web modernas con <strong>React</strong> y <strong>Next.js</strong> en el frontend, <strong>NestJS</strong> o <strong>Node.js</strong> en el backend. Desde MVPs hasta sistemas escalables.</p>
+            <ul class="service-stack">
+              <li>React / Next.js</li>
+              <li>NestJS / Node.js</li>
+              <li>TypeScript</li>
+              <li>PostgreSQL / MySQL / MongoDB</li>
+            </ul>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-server"></i></div>
+            <h3>APIs REST &amp; Backends</h3>
+            <p>Diseño e implementación de <strong>APIs REST</strong> robustas con autenticación <strong>JWT</strong>, control de roles <strong>RBAC</strong> y arquitectura modular lista para producción.</p>
+            <ul class="service-stack">
+              <li>NestJS / Express</li>
+              <li>TypeScript + Zod</li>
+              <li>Auth JWT / RBAC</li>
+              <li>Docker</li>
+            </ul>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3>Apps Móviles</h3>
+            <p>Aplicaciones <strong>iOS y Android</strong> con una sola base de código en <strong>Flutter</strong>. Integración con APIs, notificaciones push y experiencia nativa.</p>
+            <ul class="service-stack">
+              <li>Flutter / Dart</li>
+              <li>iOS &amp; Android</li>
+              <li>Integración con APIs REST</li>
+              <li>Push Notifications</li>
+            </ul>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-search-plus"></i></div>
+            <h3>Consultoría Técnica</h3>
+            <p>Revisión de arquitectura, <strong>code review</strong>, optimización de performance y mentoría para equipos. Ayudo a detectar y resolver cuellos de botella técnicos.</p>
+            <ul class="service-stack">
+              <li>Revisión de arquitectura</li>
+              <li>Code review</li>
+              <li>Optimización de APIs</li>
+              <li>Mentoría técnica</li>
+            </ul>
+          </div>
+        </div>
+        <div class="services-cta">
+          <p>¿Tenés un proyecto? Trabajemos juntos — remoto desde Paraguay para toda Latinoamérica.</p>
+          <a href="#contact" class="btn btn-primary">Hablemos</a>
         </div>
       </div>
     </section>
@@ -550,6 +717,7 @@
                   <a
                     href="https://www.linkedin.com/in/ing-mauricio-gonzalez"
                     target="_blank"
+                    rel="noopener noreferrer"
                     >linkedin.com/in/ing-mauricio-gonzalez</a
                   >
                 </p>
@@ -560,13 +728,42 @@
               <div>
                 <h3>GitHub</h3>
                 <p>
-                  <a href="https://github.com/mauridevcde" target="_blank"
+                  <a href="https://github.com/mauridevcde" target="_blank" rel="noopener noreferrer"
                     >github.com/mauridevcde</a
                   >
                 </p>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Preview Section -->
+    <section class="section blog-preview">
+      <div class="container">
+        <h2 class="section-title">Últimos <span>Artículos</span></h2>
+        <p class="section-subtitle">Notas técnicas sobre React, NestJS, TypeScript y Flutter</p>
+        <div class="blog-grid">
+          <article class="blog-card">
+            <div class="blog-card-content">
+              <span class="blog-tag">NestJS · TypeScript</span>
+              <h3><a href="blog/autenticacion-jwt-nestjs-typescript.html">Autenticación JWT con NestJS y TypeScript</a></h3>
+              <p>Cómo implementar un sistema de autenticación seguro con JWT, guards y decoradores personalizados en NestJS.</p>
+              <a href="blog/autenticacion-jwt-nestjs-typescript.html" class="blog-read-more">Leer artículo →</a>
+            </div>
+          </article>
+          <article class="blog-card">
+            <div class="blog-card-content">
+              <span class="blog-tag">Next.js · React</span>
+              <h3><a href="blog/nextjs-vs-remix-2025.html">Next.js vs Remix en 2025 — ¿Cuál elegir?</a></h3>
+              <p>Comparativa práctica entre los dos frameworks React más populares del momento. Casos de uso, rendimiento y DX.</p>
+              <a href="blog/nextjs-vs-remix-2025.html" class="blog-read-more">Leer artículo →</a>
+            </div>
+          </article>
+        </div>
+        <div class="blog-cta">
+          <a href="blog/" class="btn btn-secondary">Ver todos los artículos</a>
         </div>
       </div>
     </section>
@@ -594,12 +791,14 @@
             <a
               href="https://github.com/mauridevcde"
               target="_blank"
+              rel="noopener noreferrer"
               itemprop="sameAs"
               ><i class="fab fa-github"></i
             ></a>
             <a
               href="https://www.linkedin.com/in/ing-mauricio-gonzalez"
               target="_blank"
+              rel="noopener noreferrer"
               itemprop="sameAs"
               ><i class="fab fa-linkedin"></i
             ></a>

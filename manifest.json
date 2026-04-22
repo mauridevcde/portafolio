@@ -1,0 +1,17 @@
+{
+  "name": "Mauricio González | Full Stack Developer",
+  "short_name": "MG Dev",
+  "description": "Portafolio de Mauricio González — Full Stack Developer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "assets/mauriciogonzalezpicture.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

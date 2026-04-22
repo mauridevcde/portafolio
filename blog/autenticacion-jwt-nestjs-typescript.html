@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://mauridevcde.pro/blog/autenticacion-jwt-nestjs-typescript.html" />
+    <meta name="robots" content="index, follow" />
+
+    <title>Autenticación JWT con NestJS y TypeScript | Mauricio González Dev</title>
+    <meta name="description" content="Guía práctica para implementar autenticación JWT en NestJS con TypeScript. Guards, decoradores personalizados, refresh tokens y control de roles RBAC." />
+    <meta name="keywords" content="jwt nestjs typescript, autenticacion nestjs, guards nestjs, rbac nestjs, refresh token nestjs" />
+    <meta name="author" content="Mauricio González" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mauridevcde.pro/blog/autenticacion-jwt-nestjs-typescript.html" />
+    <meta property="og:title" content="Autenticación JWT con NestJS y TypeScript" />
+    <meta property="og:description" content="Guía práctica para implementar autenticación JWT en NestJS con Guards y RBAC." />
+    <meta property="og:image" content="https://mauridevcde.pro/assets/mauriciogonzalezpicture.png" />
+    <meta property="og:locale" content="es_PY" />
+    <meta property="article:author" content="Mauricio González" />
+    <meta property="article:published_time" content="2026-04-22" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Autenticación JWT con NestJS y TypeScript" />
+    <meta name="twitter:description" content="Guards, decoradores y RBAC en NestJS — guía práctica." />
+
+    <!-- JSON-LD Article -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Autenticación JWT con NestJS y TypeScript",
+      "description": "Guía práctica para implementar autenticación JWT en NestJS con Guards, decoradores personalizados y control de roles RBAC.",
+      "author": {
+        "@type": "Person",
+        "name": "Mauricio González",
+        "url": "https://mauridevcde.pro"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Mauricio González",
+        "url": "https://mauridevcde.pro"
+      },
+      "datePublished": "2026-04-22",
+      "dateModified": "2026-04-22",
+      "url": "https://mauridevcde.pro/blog/autenticacion-jwt-nestjs-typescript.html",
+      "inLanguage": "es",
+      "keywords": ["JWT", "NestJS", "TypeScript", "autenticación", "RBAC", "Guards"]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" />
+
+    <!-- Font Awesome -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="blog.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='68' font-family='Arial' font-size='52' font-weight='bold' fill='white' text-anchor='middle'>MG</text></svg>" />
+    <meta name="theme-color" content="#2563eb" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="../" class="logo">MG</a>
+        <nav class="navbar">
+          <ul>
+            <li><a href="../#about">Sobre mí</a></li>
+            <li><a href="../#projects">Proyectos</a></li>
+            <li><a href="../#services">Servicios</a></li>
+            <li><a href="../blog/" class="active">Blog</a></li>
+            <li><a href="../#contact">Contacto</a></li>
+          </ul>
+        </nav>
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <article class="blog-post">
+        <div class="container blog-post-container">
+          <header class="blog-post-header">
+            <div class="blog-post-meta">
+              <span class="blog-tag">NestJS · TypeScript</span>
+              <time datetime="2026-04-22">22 de abril, 2026</time>
+              <span class="blog-author">por <a href="../">Mauricio González</a></span>
+            </div>
+            <h1>Autenticación JWT con NestJS y TypeScript</h1>
+            <p class="blog-post-intro">
+              NestJS tiene un sistema de guards y decoradores que hace la autenticación JWT elegante y mantenible. En este artículo implementamos el flujo completo: login, generación de tokens, guards de protección de rutas y control de roles RBAC.
+            </p>
+          </header>
+
+          <div class="blog-post-content">
+            <h2>¿Por qué JWT en NestJS?</h2>
+            <p>
+              JSON Web Tokens permiten autenticación stateless: el servidor no guarda sesiones. Cada request incluye el token firmado y el servidor lo valida. En NestJS, los <strong>Guards</strong> son el mecanismo nativo para interceptar requests antes de que lleguen al controlador.
+            </p>
+
+            <h2>Estructura del módulo de autenticación</h2>
+            <p>La arquitectura que uso en proyectos como el <a href="../#projects">Sistema de Gestión Veterinaria</a>:</p>
+            <pre><code>src/
+├── auth/
+│   ├── auth.module.ts
+│   ├── auth.service.ts
+│   ├── auth.controller.ts
+│   ├── guards/
+│   │   ├── jwt-auth.guard.ts
+│   │   └── roles.guard.ts
+│   ├── decorators/
+│   │   ├── public.decorator.ts
+│   │   └── roles.decorator.ts
+│   └── strategies/
+│       └── jwt.strategy.ts</code></pre>
+
+            <h2>1. Instalar dependencias</h2>
+            <pre><code>npm install @nestjs/jwt @nestjs/passport passport passport-jwt
+npm install -D @types/passport-jwt</code></pre>
+
+            <h2>2. JWT Strategy</h2>
+            <pre><code>// auth/strategies/jwt.strategy.ts
+import { Injectable } from '@nestjs/common';
+import { PassportStrategy } from '@nestjs/passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor() {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
+      secretOrKey: process.env.JWT_SECRET,
+    });
+  }
+
+  async validate(payload: { sub: number; email: string; role: string }) {
+    return { userId: payload.sub, email: payload.email, role: payload.role };
+  }
+}</code></pre>
+
+            <h2>3. Guard de autenticación</h2>
+            <pre><code>// auth/guards/jwt-auth.guard.ts
+import { Injectable, ExecutionContext } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { AuthGuard } from '@nestjs/passport';
+import { IS_PUBLIC_KEY } from '../decorators/public.decorator';
+
+@Injectable()
+export class JwtAuthGuard extends AuthGuard('jwt') {
+  constructor(private reflector: Reflector) {
+    super();
+  }
+
+  canActivate(context: ExecutionContext) {
+    const isPublic = this.reflector.getAllAndOverride&lt;boolean&gt;(IS_PUBLIC_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (isPublic) return true;
+    return super.canActivate(context);
+  }
+}</code></pre>
+
+            <h2>4. Decorador @Public()</h2>
+            <pre><code>// auth/decorators/public.decorator.ts
+import { SetMetadata } from '@nestjs/common';
+
+export const IS_PUBLIC_KEY = 'isPublic';
+export const Public = () => SetMetadata(IS_PUBLIC_KEY, true);</code></pre>
+
+            <h2>5. Guard de roles (RBAC)</h2>
+            <pre><code>// auth/guards/roles.guard.ts
+import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { ROLES_KEY } from '../decorators/roles.decorator';
+
+@Injectable()
+export class RolesGuard implements CanActivate {
+  constructor(private reflector: Reflector) {}
+
+  canActivate(context: ExecutionContext): boolean {
+    const requiredRoles = this.reflector.getAllAndOverride&lt;string[]&gt;(ROLES_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (!requiredRoles) return true;
+    const { user } = context.switchToHttp().getRequest();
+    return requiredRoles.includes(user.role);
+  }
+}</code></pre>
+
+            <h2>6. Uso en controladores</h2>
+            <pre><code>@Controller('users')
+export class UserController {
+  // Ruta pública — no requiere token
+  @Public()
+  @Post('login')
+  login(@Body() dto: LoginDto) { ... }
+
+  // Solo ADMIN puede acceder
+  @Roles('admin')
+  @Get('all')
+  findAll() { ... }
+}</code></pre>
+
+            <h2>Registro global de guards</h2>
+            <p>Registrar ambos guards globalmente en <code>app.module.ts</code> para proteger todas las rutas por defecto:</p>
+            <pre><code>providers: [
+  { provide: APP_GUARD, useClass: JwtAuthGuard },
+  { provide: APP_GUARD, useClass: RolesGuard },
+]</code></pre>
+
+            <h2>Resultado</h2>
+            <p>
+              Con esta arquitectura, cada ruta está protegida por defecto. Las rutas públicas se marcan explícitamente con <code>@Public()</code> y el acceso por rol se controla con <code>@Roles('admin')</code>. Es el mismo patrón que uso en el backend del <a href="../#projects">Sistema Veterinario</a>.
+            </p>
+          </div>
+
+          <footer class="blog-post-footer">
+            <p>¿Preguntas o sugerencias? <a href="../#contact">Escribime</a> o encontrame en <a href="https://www.linkedin.com/in/ing-mauricio-gonzalez" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+            <a href="../blog/" class="btn btn-secondary">← Volver al blog</a>
+          </footer>
+        </div>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">MG</div>
+          <div class="footer-info">
+            <span><strong>Mauricio González</strong></span>
+            <span>Full Stack Developer</span>
+            <span>mauridevcde@gmail.com</span>
+          </div>
+          <div class="footer-social">
+            <a href="https://github.com/mauridevcde" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ing-mauricio-gonzalez" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:mauridevcde@gmail.com"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; <span id="year"></span> Mauricio González. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="../script.js" defer></script>
+  </body>
+</html>
