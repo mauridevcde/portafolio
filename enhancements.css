@@ -46,9 +46,10 @@ body {
     var(--bg-color);
   position: relative;
   overflow: hidden;
+  z-index: 0;
 }
 
-/* Ambient mesh gradients */
+/* Ambient mesh gradients - behind header (z-index 1) */
 .hero::before,
 .hero::after {
   content: '';
@@ -57,26 +58,26 @@ body {
   filter: blur(80px);
   opacity: 0.4;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
-/* Primary orb */
+/* Primary orb - extends behind header */
 .hero::before {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(160,82,45,0.12) 0%, transparent 70%);
-  top: -200px;
-  left: -100px;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(160,82,45,0.15) 0%, transparent 70%);
+  top: -300px;
+  left: -150px;
   animation: mesh-drift 20s ease-in-out infinite;
 }
 
-/* Secondary orb */
+/* Secondary orb - extends behind header */
 .hero::after {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(197,176,141,0.08) 0%, transparent 70%);
-  bottom: -150px;
-  right: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(197,176,141,0.12) 0%, transparent 70%);
+  bottom: -200px;
+  right: -150px;
   animation: mesh-drift 25s ease-in-out infinite reverse;
 }
 
@@ -227,9 +228,72 @@ body {
   box-shadow: 0 4px 14px rgba(160,82,45,.2);
 }
 
-/* ── 8. Header ────────────────────────────────────────────────── */
+/* ── 8. Header — Glassmorphism ──────────────────────────────── */
 .header {
-  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  background: rgba(227, 215, 197, 0.75);
+  border-bottom: 1px solid rgba(160, 82, 45, 0.1);
+  box-shadow: 0 4px 24px rgba(160, 82, 45, 0.05);
+}
+
+/* Logo glass effect */
+.logo {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 4px rgba(160,82,45,0.2));
+}
+
+/* Nav links - indicador activo */
+.navbar ul li a {
+  position: relative;
+}
+
+.navbar ul li a::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.navbar ul li a:hover::before,
+.navbar ul li a.active::before {
+  transform: translateX(-50%) scale(1);
+}
+
+/* Dark mode header */
+[data-theme="dark"] .header {
+  background: rgba(26, 43, 36, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: rgba(160, 82, 45, 0.15);
+}
+
+/* Dark mode mobile menu toggle */
+[data-theme="dark"] .menu-toggle span {
+  background: #eeeeee !important;
+}
+
+/* Dark mode mobile navbar */
+[data-theme="dark"] .navbar {
+  background: rgba(26, 43, 36, 0.9) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .navbar ul li a:hover,
+[data-theme="dark"] .navbar ul li a.active {
+  background: rgba(160, 82, 45, 0.2);
+  color: var(--cashmere);
 }
 
 /* ── 9. Skill cards — gradient top bar ───────────────────────── */

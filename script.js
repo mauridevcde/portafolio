@@ -189,17 +189,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ==================== MENÚ MÓVIL ====================
-  if (elements.menuToggle && elements.navbar) {
-    elements.menuToggle.addEventListener("click", () => {
-      elements.menuToggle.classList.toggle("active");
-      elements.navbar.classList.toggle("active");
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navbar = document.querySelector(".navbar");
+
+  if (menuToggle && navbar) {
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active");
+      navbar.classList.toggle("active");
     });
 
-    // Cerrar menú al hacer clic en un enlace
     document.querySelectorAll(".navbar a").forEach((link) => {
       link.addEventListener("click", () => {
-        elements.menuToggle.classList.remove("active");
-        elements.navbar.classList.remove("active");
+        menuToggle.classList.remove("active");
+        navbar.classList.remove("active");
       });
     });
   }
