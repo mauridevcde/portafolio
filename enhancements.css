@@ -1,0 +1,451 @@
+/* ================================================================
+   VISUAL ENHANCEMENTS — Motion-Driven Design System
+   Portfolio: Mauricio González | Full Stack Developer
+   ================================================================ */
+
+/* ── 1. Design Tokens ─────────────────────────────────────────── */
+:root {
+  --gradient-primary:   linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --gradient-primary-r: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+  --gradient-hero:      linear-gradient(135deg, rgba(37,99,235,.07) 0%, rgba(124,58,237,.04) 50%, rgba(37,99,235,.02) 100%);
+
+  --shadow-sm:   0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:   0 4px 16px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
+  --shadow-lg:   0 20px 48px rgba(0,0,0,.12), 0 8px 20px rgba(0,0,0,.06);
+  --shadow-blue: 0 8px 32px rgba(37,99,235,.25);
+  --shadow-blue-lg: 0 20px 48px rgba(37,99,235,.28);
+  --glow-primary:  0 0 40px rgba(37,99,235,.18);
+
+  --border-subtle: rgba(0,0,0,.07);
+
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out:    cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+[data-theme="dark"] {
+  --gradient-hero:   linear-gradient(135deg, rgba(37,99,235,.12) 0%, rgba(124,58,237,.08) 50%, rgba(37,99,235,.04) 100%);
+  --border-subtle:   rgba(255,255,255,.07);
+  --shadow-md:  0 4px 16px rgba(0,0,0,.35);
+  --shadow-lg:  0 20px 48px rgba(0,0,0,.45);
+}
+
+/* ── 2. Base & Typography ─────────────────────────────────────── */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── 3. Hero — dot-grid + gradient ───────────────────────────── */
+.hero {
+  background: var(--gradient-hero);
+  position: relative;
+  overflow: hidden;
+}
+
+/* dot grid watermark */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(37,99,235,.14) 1px, transparent 0);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 30%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* gradient name */
+.hero h1 span {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── 4. Profile image — glow ring ─────────────────────────────── */
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.image-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  opacity: .25;
+  animation: img-glow 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.image-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1px dashed rgba(37,99,235,.22);
+  animation: ring-spin 22s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes img-glow {
+  0%, 100% { opacity: .2; transform: scale(1);    }
+  50%       { opacity: .38; transform: scale(1.03); }
+}
+
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+.profile-img {
+  border: 3px solid rgba(37,99,235,.25) !important;
+  box-shadow: var(--shadow-blue-lg) !important;
+  transition: box-shadow .35s var(--ease-out), transform .35s var(--ease-out) !important;
+}
+
+.profile-img:hover {
+  box-shadow: var(--shadow-blue-lg), var(--glow-primary) !important;
+  transform: scale(1.025) !important;
+}
+
+/* ── 5. Buttons ───────────────────────────────────────────────── */
+.btn-primary {
+  background: var(--gradient-primary) !important;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-blue) !important;
+  letter-spacing: .01em;
+}
+
+/* shimmer sweep */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.18) 50%, transparent 100%);
+  transform: translateX(-120%);
+  transition: transform .55s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%) !important;
+  box-shadow: var(--shadow-blue-lg) !important;
+  transform: translateY(-3px) !important;
+}
+
+.btn-primary:hover::after { transform: translateX(120%); }
+
+.btn-secondary {
+  transition: all .25s var(--ease-out) !important;
+}
+
+.btn-secondary:hover {
+  box-shadow: var(--shadow-blue) !important;
+}
+
+/* ── 6. Section title — gradient underline ────────────────────── */
+.section-title::after {
+  background: var(--gradient-primary) !important;
+  height: 3px !important;
+  border-radius: 3px !important;
+  width: 56px !important;
+  transition: width .4s var(--ease-out);
+}
+
+.section-title:hover::after { width: 96px !important; }
+
+/* ── 7. Hero keyword chips ────────────────────────────────────── */
+.hero-keywords span {
+  border: 1px solid rgba(37,99,235,.2);
+  backdrop-filter: blur(8px);
+  transition: background .2s ease, transform .2s var(--ease-spring), box-shadow .2s ease;
+  cursor: default;
+}
+
+.hero-keywords span:hover {
+  background: rgba(37,99,235,.16) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 14px rgba(37,99,235,.2);
+}
+
+/* ── 8. Header ────────────────────────────────────────────────── */
+.header {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* ── 9. Skill cards — gradient top bar ───────────────────────── */
+.skill-category {
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s var(--ease-out), box-shadow .3s ease, border-color .3s ease !important;
+}
+
+.skill-category::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s var(--ease-out);
+}
+
+.skill-category:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-color: rgba(37,99,235,.18) !important;
+}
+
+.skill-category:hover::before { transform: scaleX(1); }
+
+/* ── 10. Project cards ────────────────────────────────────────── */
+.project-card {
+  border: 1px solid var(--border-subtle) !important;
+  transition: transform .35s var(--ease-out), box-shadow .35s ease, border-color .35s ease !important;
+}
+
+.project-card:hover {
+  transform: translateY(-14px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-color: rgba(37,99,235,.22) !important;
+}
+
+/* Tech tags */
+.project-tech span {
+  background: rgba(37,99,235,.07);
+  color: var(--primary-color);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: .8rem;
+  font-weight: 600;
+  border: 1px solid rgba(37,99,235,.15);
+  transition: background .18s ease, transform .18s var(--ease-spring);
+  display: inline-block;
+}
+
+.project-tech span:hover {
+  background: rgba(37,99,235,.16);
+  transform: scale(1.06);
+}
+
+/* ── 11. Contact items — accent left border ───────────────────── */
+.contact-item {
+  border: 1px solid var(--border-subtle) !important;
+  border-left: 3px solid transparent !important;
+  transition: transform .25s var(--ease-out), box-shadow .25s ease, border-left-color .25s ease !important;
+}
+
+.contact-item:hover {
+  border-left-color: var(--primary-color) !important;
+  transform: translateX(7px) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* ── 12. Timeline ─────────────────────────────────────────────── */
+.timeline-content {
+  border: 1px solid var(--border-subtle);
+  transition: box-shadow .3s ease;
+}
+
+.timeline-item:hover .timeline-content { box-shadow: var(--shadow-lg); }
+
+.timeline-item::after {
+  background: var(--gradient-primary) !important;
+  box-shadow: var(--shadow-blue) !important;
+  border: 2px solid rgba(255,255,255,.4);
+}
+
+/* ── 13. Stat circles ─────────────────────────────────────────── */
+.stat-circle {
+  background: linear-gradient(145deg, rgba(37,99,235,.06) 0%, rgba(37,99,235,.13) 100%) !important;
+  border: 1px solid rgba(37,99,235,.12);
+  transition: transform .35s var(--ease-spring), box-shadow .35s ease !important;
+}
+
+.stat-circle:hover {
+  transform: scale(1.13) rotate(-4deg) !important;
+  box-shadow: var(--shadow-blue) !important;
+}
+
+/* ── 14. Availability section ─────────────────────────────────── */
+.availability {
+  background: var(--gradient-primary) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.availability::before {
+  content: '';
+  position: absolute;
+  top: -60%; right: -8%;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  pointer-events: none;
+}
+
+.availability::after {
+  content: '';
+  position: absolute;
+  bottom: -40%; left: 3%;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.04);
+  pointer-events: none;
+}
+
+/* ── 15. Dark mode toggle ─────────────────────────────────────── */
+#darkModeToggle {
+  background: var(--gradient-primary) !important;
+  box-shadow: var(--shadow-blue) !important;
+}
+
+/* ── 16. Logo gradient ────────────────────────────────────────── */
+.logo, .footer-logo {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── 17. Footer social icons ──────────────────────────────────── */
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .25s var(--ease-spring), box-shadow .2s ease;
+}
+
+.footer-social a:hover {
+  background: var(--gradient-primary);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-blue);
+}
+
+/* ── 18. Scroll-reveal animations ────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .65s var(--ease-out), transform .65s var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity .65s var(--ease-out), transform .65s var(--ease-out);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity .65s var(--ease-out), transform .65s var(--ease-out);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Staggered children */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .5s var(--ease-out), transform .5s var(--ease-out);
+}
+
+.reveal-stagger.visible > *:nth-child(1)  { transition-delay:  0ms; }
+.reveal-stagger.visible > *:nth-child(2)  { transition-delay: 70ms; }
+.reveal-stagger.visible > *:nth-child(3)  { transition-delay:140ms; }
+.reveal-stagger.visible > *:nth-child(4)  { transition-delay:210ms; }
+.reveal-stagger.visible > *:nth-child(5)  { transition-delay:280ms; }
+.reveal-stagger.visible > *:nth-child(6)  { transition-delay:350ms; }
+.reveal-stagger.visible > *:nth-child(7)  { transition-delay:420ms; }
+.reveal-stagger.visible > *:nth-child(8)  { transition-delay:490ms; }
+.reveal-stagger.visible > * { opacity: 1; transform: translateY(0); }
+
+/* ── 19. Carousel buttons ─────────────────────────────────────── */
+.carousel-btn {
+  background: rgba(37,99,235,.7) !important;
+  backdrop-filter: blur(4px);
+  transition: background .2s ease, transform .2s var(--ease-spring) !important;
+}
+
+.carousel-btn:hover {
+  background: var(--primary-color) !important;
+  transform: translateY(-50%) scale(1.1) !important;
+}
+
+/* ── 20. Project links ────────────────────────────────────────── */
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s var(--ease-spring);
+}
+
+.project-links a:hover {
+  background: var(--primary-color);
+  color: white !important;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* ── 21. About section ────────────────────────────────────────── */
+.about-info a {
+  color: var(--primary-color);
+  font-weight: 500;
+  text-underline-offset: 3px;
+}
+
+/* ── 22. Section alternating bg ──────────────────────────────── */
+.section.skills,
+.section.projects {
+  position: relative;
+}
+
+/* ── 23. Back to top / FAB ────────────────────────────────────── */
+.fab-button {
+  background: var(--gradient-primary) !important;
+  box-shadow: var(--shadow-blue) !important;
+}
+
+/* ── 24. prefers-reduced-motion ──────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .image-wrapper::before,
+  .image-wrapper::after   { animation: none; }
+  .btn-primary::after     { transition: none; }
+
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-stagger > * {
+    transition-duration: .01ms !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

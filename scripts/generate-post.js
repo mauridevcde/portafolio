@@ -253,11 +253,17 @@ function buildArticleHtml(data, slug, topic) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../enhancements.css" />
     <link rel="stylesheet" href="blog.css" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='68' font-family='Arial' font-size='52' font-weight='bold' fill='white' text-anchor='middle'>MG</text></svg>" />
     <meta name="theme-color" content="#2563eb" />
   </head>
   <body>
+    <div class="reading-progress" id="readingProgress"></div>
+    <button id="darkModeToggle" aria-label="Toggle dark mode">
+      <i class="fas fa-moon"></i>
+      <i class="fas fa-sun"></i>
+    </button>
     <header class="header">
       <div class="container">
         <a href="../" class="logo">MG</a>
@@ -324,6 +330,13 @@ function buildArticleHtml(data, slug, topic) {
 
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
     <script src="../script.js" defer></script>
+    <script>
+      window.addEventListener('scroll', () => {
+        const doc = document.documentElement;
+        const progress = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+        document.getElementById('readingProgress').style.width = progress + '%';
+      });
+    </script>
   </body>
 </html>
 `;

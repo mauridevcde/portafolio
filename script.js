@@ -244,26 +244,35 @@ document.addEventListener("DOMContentLoaded", function () {
   function checkScroll() {
     const triggerBottom = (window.innerHeight / 5) * 4;
 
-    // Animar línea de tiempo
     document.querySelectorAll(".timeline-item").forEach((item) => {
-      const itemTop = item.getBoundingClientRect().top;
-      if (itemTop < triggerBottom) {
+      if (item.getBoundingClientRect().top < triggerBottom) {
         item.classList.add("visible");
       }
     });
 
-    // Animar proyectos
     document.querySelectorAll(".project-card").forEach((card) => {
-      const cardTop = card.getBoundingClientRect().top;
-      if (cardTop < triggerBottom) {
+      if (card.getBoundingClientRect().top < triggerBottom) {
         card.classList.add("visible");
       }
     });
   }
 
-  // Ejecutar al cargar y al hacer scroll
   window.addEventListener("load", checkScroll);
   window.addEventListener("scroll", checkScroll);
+
+  // ==================== REVEAL ON SCROLL (Intersection Observer) ====================
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -60px 0px" });
+
+  document
+    .querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-stagger")
+    .forEach((el) => revealObserver.observe(el));
 
   // ==================== FORMULARIO DE CONTACTO ====================
   if (elements.contactForm) {
