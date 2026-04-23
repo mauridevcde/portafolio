@@ -362,7 +362,7 @@ function updateBlogIndex(slug, data, topic) {
 
   // Inserta al inicio del grid de artículos
   html = html.replace(
-    /(<div class="blog-articles-grid">)/,
+    /(<div[^>]*class="[^"]*blog-articles-grid[^"]*"[^>]*>)/,
     `$1\n${newCard}`
   );
 
