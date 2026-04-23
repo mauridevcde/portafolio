@@ -59,14 +59,41 @@ const TOPICS = [
   },
 ];
 
-function getDayOfYear() {
-  const now = new Date();
-  const start = new Date(now.getFullYear(), 0, 0);
-  return Math.floor((now - start) / 86400000);
+function getExistingPosts() {
+  const blogDir = path.join(ROOT, 'blog');
+  return fs.readdirSync(blogDir)
+    .filter(f => f.endsWith('.html') && f !== 'index.html')
+    .map(file => {
+      const content = fs.readFileSync(path.join(blogDir, file), 'utf8');
+      const titleMatch = content.match(/<h1[^>]*>([^<]+)<\/h1>/);
+      const tagMatch   = content.match(/<span class="blog-tag">([^<]+)<\/span>/);
+      const dateMatch  = content.match(/<time datetime="([^"]+)"/);
+      return {
+        title: titleMatch ? titleMatch[1].trim() : '',
+        tag:   tagMatch   ? tagMatch[1].trim()   : '',
+        date:  dateMatch  ? dateMatch[1]          : '1970-01-01',
+      };
+    })
+    .filter(p => p.title);
 }
 
-function getTodayTopic() {
-  return TOPICS[getDayOfYear() % TOPICS.length];
+function getTodayTopic(existingPosts) {
+  const lastUsed = {};
+  for (const post of existingPosts) {
+    const idx = TOPICS.findIndex(t => t.tag === post.tag);
+    if (idx !== -1) {
+      if (!lastUsed[idx] || post.date > lastUsed[idx]) {
+        lastUsed[idx] = post.date;
+      }
+    }
+  }
+  let chosen = 0;
+  for (let i = 1; i < TOPICS.length; i++) {
+    const a = lastUsed[i]      || '1970-01-01';
+    const b = lastUsed[chosen] || '1970-01-01';
+    if (a < b) chosen = i;
+  }
+  return TOPICS[chosen];
 }
 
 function getToday() {
@@ -145,9 +172,13 @@ function groqRequest(prompt) {
   });
 }
 
-function buildPrompt(topic) {
-  return `Eres un experto desarrollador Full Stack y escritor técnico. Tu audiencia son desarrolladores de Latinoamérica (Argentina, Chile, México, Paraguay).
+function buildPrompt(topic, existingPosts) {
+  const avoidBlock = existingPosts.length > 0
+    ? `\nTÍTULOS YA PUBLICADOS (NO repitas ni parafrasees ninguno):\n${existingPosts.map(p => `- "${p.title}" [${p.tag}]`).join('\n')}\n\nEl nuevo artículo DEBE tener un ángulo diferente, un subtema específico o un caso de uso concreto que no aparezca en la lista anterior.\n`
+    : '';
 
+  return `Eres un experto desarrollador Full Stack y escritor técnico. Tu audiencia son desarrolladores de Latinoamérica (Argentina, Chile, México, Paraguay).
+${avoidBlock}
 Escribe un artículo de blog técnico en ESPAÑOL sobre: ${topic.theme}
 
 REGLAS:
@@ -389,10 +420,13 @@ function updateSitemap(slug) {
 }
 
 async function main() {
-  const topic = getTodayTopic();
+  const existingPosts = getExistingPosts();
+  console.log(`Posts existentes: ${existingPosts.length}`);
+
+  const topic = getTodayTopic(existingPosts);
   console.log(`Tema del día: ${topic.theme}`);
 
-  const prompt = buildPrompt(topic);
+  const prompt = buildPrompt(topic, existingPosts);
 
   console.log('Llamando a Groq API...');
   const rawResponse = await groqRequest(prompt);
