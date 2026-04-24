@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DarkModeToggle from '../components/DarkModeToggle.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import AvailabilitySection from '../components/sections/AvailabilitySection.astro';
+import AboutSection from '../components/sections/AboutSection.astro';
+import SkillsSection from '../components/sections/SkillsSection.astro';
+import ExperienceSection from '../components/sections/ExperienceSection.astro';
+import EducationSection from '../components/sections/EducationSection.astro';
+import ProjectsSection from '../components/sections/ProjectsSection.astro';
+import ServicesSection from '../components/sections/ServicesSection.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+import BlogPreviewSection from '../components/sections/BlogPreviewSection.astro';
+
+const jsonLd = JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Mauricio González',
+    jobTitle: 'Full Stack Developer',
+    description: 'Full Stack Developer con 5+ años de experiencia en React, NestJS, Node.js, TypeScript y Flutter. Disponible para posiciones presenciales, híbridas y remotas.',
+    url: 'https://mauridevcde.pro',
+    image: 'https://mauridevcde.pro/assets/mauriciogonzalezpicture.png',
+    email: 'mauridevcde@gmail.com',
+    telephone: '+595993510816',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Ciudad del Este',
+      addressRegion: 'Alto Paraná',
+      addressCountry: 'PY',
+    },
+    alumniOf: {
+      '@type': 'CollegeOrUniversity',
+      name: 'Universidad Privada del Este',
+    },
+    knowsAbout: ['React', 'Next.js', 'NestJS', 'Node.js', 'TypeScript', 'Flutter', 'Dart', 'PostgreSQL', 'MySQL', 'MongoDB', 'Docker'],
+    sameAs: ['https://github.com/mauridevcde', 'https://www.linkedin.com/in/ing-mauricio-gonzalez'],
+    seeks: { '@type': 'Demand', name: 'Posición Full Stack Developer remoto en Latinoamérica' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Sistema de Gestión Veterinaria — Frontend',
+        description: 'Aplicación web con Next.js y React. Protección de rutas mediante Next Middleware, gestión de estado con Zustand y autenticación JWT.',
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Web',
+        programmingLanguage: ['TypeScript', 'React', 'Next.js'],
+        author: { '@type': 'Person', name: 'Mauricio González', url: 'https://mauridevcde.pro' },
+        codeRepository: 'https://github.com/mauridevcde/Front_sis_vet',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Sistema de Gestión Veterinaria — Backend',
+        description: 'API REST con Node.js, Express y TypeScript. Validación de esquemas con Zod, autenticación JWT con control de roles y modelo relacional en MySQL2.',
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Web',
+        programmingLanguage: ['TypeScript', 'Node.js', 'Express'],
+        author: { '@type': 'Person', name: 'Mauricio González', url: 'https://mauridevcde.pro' },
+        codeRepository: 'https://github.com/mauridevcde/backend_sis_vet',
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://mauridevcde.pro/#home' },
+          { '@type': 'ListItem', position: 2, name: 'Sobre Mí', item: 'https://mauridevcde.pro/#about' },
+          { '@type': 'ListItem', position: 3, name: 'Proyectos', item: 'https://mauridevcde.pro/#projects' },
+          { '@type': 'ListItem', position: 4, name: 'Servicios', item: 'https://mauridevcde.pro/#services' },
+          { '@type': 'ListItem', position: 5, name: 'Blog', item: 'https://mauridevcde.pro/blog/' },
+          { '@type': 'ListItem', position: 6, name: 'Contacto', item: 'https://mauridevcde.pro/#contact' },
+        ],
+      },
+    ],
+  },
+]);
+---
+
+<BaseLayout
+  title="Mauricio González | Desarrollador Full Stack Remoto — React · NestJS · TypeScript"
+  description="Desarrollador Full Stack con 5+ años de experiencia. Disponible para trabajo remoto en Latinoamérica. React, Next.js, NestJS, TypeScript, Flutter. Ciudad del Este, Paraguay."
+  keywords="desarrollador full stack remoto, programador freelance paraguay, react developer latam, nestjs developer, desarrollo web latam, contratar desarrollador remoto, flutter developer, React, NestJS, Node.js, TypeScript, Flutter, PostgreSQL, MongoDB, Docker"
+  canonicalUrl="https://mauridevcde.pro/"
+  ogType="profile"
+  jsonLd={jsonLd}
+  pageType="home"
+>
+  <DarkModeToggle slot="before-header" />
+  <HeroSection />
+  <AvailabilitySection />
+  <AboutSection />
+  <SkillsSection />
+  <ExperienceSection />
+  <EducationSection />
+  <ProjectsSection />
+  <ServicesSection />
+  <BlogPreviewSection />
+  <ContactSection />
+</BaseLayout>

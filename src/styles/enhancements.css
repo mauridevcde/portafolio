@@ -24,7 +24,7 @@
   --ease-in-out: cubic-bezier(0.4, 0, 0.6, 1);
 }
 
-[data-theme="dark"] {
+html[data-theme="dark"] {
   --gradient-hero:   linear-gradient(135deg, rgba(160,82,45,.12) 0%, rgba(139,69,19,.08) 50%, rgba(160,82,45,.04) 100%);
   --border-subtle:   rgba(255,255,255,.07);
   --shadow-md:  0 4px 16px rgba(0,0,0,.35);
@@ -89,12 +89,12 @@ body {
 }
 
 /* Mode oscuro — orbs más sutiles */
-[data-theme="dark"] .hero::before {
+html[data-theme="dark"] .hero::before {
   background: radial-gradient(circle, rgba(160,82,45,0.15) 0%, transparent 70%);
   opacity: 0.5;
 }
 
-[data-theme="dark"] .hero::after {
+html[data-theme="dark"] .hero::after {
   background: radial-gradient(circle, rgba(197,176,141,0.1) 0%, transparent 70%);
   opacity: 0.5;
 }
@@ -270,7 +270,7 @@ body {
 }
 
 /* Dark mode header */
-[data-theme="dark"] .header {
+html[data-theme="dark"] .header {
   background: rgba(26, 43, 36, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -278,20 +278,20 @@ body {
 }
 
 /* Dark mode mobile menu toggle */
-[data-theme="dark"] .menu-toggle span {
+html[data-theme="dark"] .menu-toggle span {
   background: #eeeeee !important;
 }
 
 /* Dark mode mobile navbar */
-[data-theme="dark"] .navbar {
+html[data-theme="dark"] .navbar {
   background: rgba(26, 43, 36, 0.9) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 4px 0 30px rgba(0, 0, 0, 0.3);
 }
 
-[data-theme="dark"] .navbar ul li a:hover,
-[data-theme="dark"] .navbar ul li a.active {
+html[data-theme="dark"] .navbar ul li a:hover,
+html[data-theme="dark"] .navbar ul li a.active {
   background: rgba(160, 82, 45, 0.2);
   color: var(--cashmere);
 }

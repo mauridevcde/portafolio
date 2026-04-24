@@ -1,0 +1,86 @@
+---
+import ProjectCarousel from '../svelte/ProjectCarousel.svelte';
+
+const vetImages = [
+  { src: '/assets/proyectos/sisPet-front/1.png', webp: '/assets/proyectos/sisPet-front/1.webp', alt: 'Sistema de Gestión Veterinaria - Dashboard principal con Next.js y React' },
+  { src: '/assets/proyectos/sisPet-front/2.png', webp: '/assets/proyectos/sisPet-front/2.webp', alt: 'Sistema de Gestión Veterinaria - Vista de citas y calendario' },
+  { src: '/assets/proyectos/sisPet-front/3.png', webp: '/assets/proyectos/sisPet-front/3.webp', alt: 'Sistema de Gestión Veterinaria - Módulo de mascotas y clientes' },
+  { src: '/assets/proyectos/sisPet-front/4.png', webp: '/assets/proyectos/sisPet-front/4.webp', alt: 'Sistema de Gestión Veterinaria - Panel de administración' },
+];
+
+const backImages = [
+  { src: '/assets/proyectos/sisPet-back/1.png', webp: '/assets/proyectos/sisPet-back/1.webp', alt: 'Backend Veterinaria - Estructura de API REST con Node.js y Express' },
+  { src: '/assets/proyectos/sisPet-back/2.png', webp: '/assets/proyectos/sisPet-back/2.webp', alt: 'Backend Veterinaria - Modelo de base de datos MySQL con TypeScript' },
+  { src: '/assets/proyectos/sisPet-back/3.png', webp: '/assets/proyectos/sisPet-back/3.webp', alt: 'Backend Veterinaria - Esquema de autenticación JWT y control de roles' },
+];
+---
+
+<section id="projects" class="section projects">
+  <div class="container">
+    <h2 class="section-title reveal">Mis <span>Proyectos</span></h2>
+    <div class="projects-grid reveal-stagger">
+
+      <!-- Proyecto 1 - Frontend Veterinario -->
+      <div class="project-card">
+        <ProjectCarousel client:visible carouselId="vet" images={vetImages} />
+        <div class="project-content">
+          <h3>Frontend · Sistema de Gestión Veterinaria</h3>
+          <p>
+            Aplicación web con <strong>Next.js</strong> y
+            <strong>React</strong>. Protección de rutas mediante
+            <strong>Next Middleware</strong>, gestión de estado global con
+            <strong>Zustand</strong> y consumo de API con
+            <strong>TanStack Query</strong> + <strong>Axios</strong>.
+            Autenticación segura mediante tokens JWT.
+          </p>
+          <div class="project-tech">
+            <span>Next.js</span>
+            <span>React</span>
+            <span>Node.js</span>
+            <span>Zustand</span>
+            <span>JWT</span>
+          </div>
+          <div class="project-links">
+            <a
+              href="https://github.com/mauridevcde/Front_sis_vet"
+              target="_blank"
+              rel="noopener noreferrer"
+            ><i class="fab fa-github"></i> Código</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proyecto 2 - Backend Veterinario -->
+      <div class="project-card">
+        <ProjectCarousel client:visible carouselId="stock" images={backImages} />
+        <div class="project-content">
+          <h3>Backend · Sistema de Gestión Veterinaria</h3>
+          <p>
+            API REST con <strong>Node.js</strong>,
+            <strong>Express</strong> y <strong>TypeScript</strong>.
+            Validación de esquemas con <strong>Zod</strong>, autenticación
+            JWT con control de roles y modelo relacional en
+            <strong>MySQL2</strong> que integra mascotas, veterinarios,
+            productos y consultas. Middlewares personalizados para
+            validación y control de acceso.
+          </p>
+          <div class="project-tech">
+            <span>MySql2</span>
+            <span>Node.js</span>
+            <span>Express</span>
+            <span>Zod</span>
+            <span>JWT</span>
+          </div>
+          <div class="project-links">
+            <a
+              href="https://github.com/mauridevcde/backend_sis_vet"
+              target="_blank"
+              rel="noopener noreferrer"
+            ><i class="fab fa-github"></i> Código</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

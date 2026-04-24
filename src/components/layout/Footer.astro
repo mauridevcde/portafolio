@@ -1,0 +1,42 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer" itemscope itemtype="https://schema.org/Person">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo">MG</div>
+      <div
+        class="footer-info"
+        itemprop="address"
+        itemscope
+        itemtype="https://schema.org/PostalAddress"
+      >
+        <span itemprop="name"><strong>Mauricio González</strong></span>
+        <span itemprop="jobTitle">Full Stack Developer</span>
+        <span itemprop="addressLocality">Paraguay</span>
+        <span itemprop="email">mauridevcde@gmail.com</span>
+        <span itemprop="telephone">+595 993 510 816</span>
+      </div>
+      <div class="footer-social">
+        <a
+          href="https://github.com/mauridevcde"
+          target="_blank"
+          rel="noopener noreferrer"
+          itemprop="sameAs"
+        ><i class="fab fa-github"></i></a>
+        <a
+          href="https://www.linkedin.com/in/ing-mauricio-gonzalez"
+          target="_blank"
+          rel="noopener noreferrer"
+          itemprop="sameAs"
+        ><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:mauridevcde@gmail.com" itemprop="email"
+        ><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {year} Mauricio González. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>

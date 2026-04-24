@@ -1,0 +1,52 @@
+---
+import ParticlesHero from '../svelte/ParticlesHero.svelte';
+---
+
+<section id="home" class="hero">
+  <ParticlesHero client:only="svelte" />
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="animated-text">
+        Hola, soy <span>Mauricio González</span>
+      </h1>
+      <h2 class="typewriter">Desarrollador Full Stack</h2>
+      <p>
+        5+ años construyendo productos web y móvil escalables con React,
+        NestJS, Node.js, TypeScript y Flutter.
+      </p>
+      <div class="hero-buttons">
+        <a href="/#projects" class="btn btn-primary">Ver proyectos</a>
+        <a
+          href="/assets/cv-mauricio-gonzalez-FullStack.pdf"
+          download
+          class="btn btn-secondary"
+        >
+          <i class="fas fa-download"></i> Descargar CV
+        </a>
+      </div>
+      <div class="hero-keywords">
+        <span>React / Next.js</span>
+        <span>NestJS</span>
+        <span>Node.js</span>
+        <span>TypeScript</span>
+        <span>Flutter</span>
+        <span>PostgreSQL</span>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="image-wrapper">
+        <picture>
+          <source srcset="/assets/mauriciogonzalezpicture.png" type="image/webp" />
+          <img
+            src="/assets/mauriciogonzalezpicture.png"
+            alt="Mauricio González - Desarrollador Full Stack Remoto"
+            class="profile-img"
+            width="400"
+            height="400"
+            fetchpriority="high"
+          />
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
