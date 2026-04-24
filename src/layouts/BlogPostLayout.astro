@@ -77,6 +77,30 @@ const jsonLd = JSON.stringify({
         <slot />
       </div>
 
+      <div class="author-bio" itemscope itemtype="https://schema.org/Person">
+        <img
+          src="/assets/mauriciogonzalezpicture.png"
+          alt="Mauricio González — Full Stack Developer"
+          itemprop="image"
+          width="64"
+          height="64"
+        />
+        <div class="author-bio-content">
+          <p class="author-bio-name">
+            <strong itemprop="name">Mauricio González</strong>
+            <span>Full Stack Developer</span>
+          </p>
+          <p class="author-bio-desc" itemprop="description">
+            5+ años desarrollando aplicaciones web y móviles con React, NestJS, TypeScript y Flutter. Basado en Paraguay, disponible para trabajo remoto en Latinoamérica.
+          </p>
+          <div class="author-bio-links">
+            <a href="https://mauridevcde.pro" itemprop="url">mauridevcde.pro</a>
+            <a href="https://www.linkedin.com/in/ing-mauricio-gonzalez" target="_blank" rel="noopener noreferrer" itemprop="sameAs">LinkedIn</a>
+            <a href="https://github.com/mauridevcde" target="_blank" rel="noopener noreferrer" itemprop="sameAs">GitHub</a>
+          </div>
+        </div>
+      </div>
+
       <footer class="blog-post-footer">
         <p>¿Preguntas o sugerencias? <a href="/#contact">Escribime</a> o encontrame en <a href="https://www.linkedin.com/in/ing-mauricio-gonzalez" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
         <a href="/blog/" class="btn btn-secondary">← Volver al blog</a>
@@ -93,3 +117,75 @@ const jsonLd = JSON.stringify({
     });
   </script>
 </BaseLayout>
+
+<style>
+  .author-bio {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--card-bg);
+    border: 1px solid rgba(160, 82, 45, 0.2);
+    border-radius: 14px;
+    padding: 24px;
+    margin: 40px 0 0;
+  }
+
+  .author-bio img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .author-bio-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 6px;
+    font-size: 1rem;
+  }
+
+  .author-bio-name strong {
+    color: var(--text-color);
+    font-weight: 700;
+  }
+
+  .author-bio-name span {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .author-bio-desc {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0 0 10px;
+  }
+
+  .author-bio-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .author-bio-links a {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(160, 82, 45, 0.3);
+    transition: border-color 0.2s;
+  }
+
+  .author-bio-links a:hover {
+    border-color: var(--primary-color);
+  }
+
+  @media (max-width: 480px) {
+    .author-bio {
+      flex-direction: column;
+    }
+  }
+</style>

@@ -11,12 +11,28 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props;
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: project.title,
+  description: project.description,
+  applicationCategory: 'WebApplication',
+  operatingSystem: 'Web',
+  programmingLanguage: project.tags,
+  author: {
+    '@type': 'Person',
+    name: 'Mauricio González',
+    url: 'https://mauridevcde.pro',
+  },
+});
 ---
 
 <BaseLayout
   title={`${project.title} — Mauricio González`}
   description={project.description}
-  canonicalUrl={`https://mauriciogonzalez.dev/proyectos/${project.slug}/`}
+  canonicalUrl={`https://mauridevcde.pro/proyectos/${project.slug}/`}
+  jsonLd={jsonLd}
   activePage="home"
 >
   <section class="section proyecto-detalle">

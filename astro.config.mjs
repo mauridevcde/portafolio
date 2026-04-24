@@ -4,7 +4,14 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://mauridevcde.pro',
-  integrations: [svelte(), sitemap()],
+  integrations: [
+    svelte(),
+    sitemap({
+      serialize(item) {
+        return { ...item, lastmod: new Date().toISOString() };
+      },
+    }),
+  ],
   output: 'static',
   trailingSlash: 'always',
 });

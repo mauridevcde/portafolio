@@ -36,6 +36,54 @@ const jsonLd = JSON.stringify([
     knowsAbout: ['React', 'Next.js', 'NestJS', 'Node.js', 'TypeScript', 'Flutter', 'Dart', 'PostgreSQL', 'MySQL', 'MongoDB', 'Docker'],
     sameAs: ['https://github.com/mauridevcde', 'https://www.linkedin.com/in/ing-mauricio-gonzalez'],
     seeks: { '@type': 'Demand', name: 'Posición Full Stack Developer remoto en Latinoamérica' },
+    nationality: 'PY',
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: 'Full Stack Developer',
+      description: 'Desarrollo de aplicaciones web y móviles con React, NestJS, TypeScript y Flutter',
+    },
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Freelance / Remoto',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Quién es Mauricio González desarrollador?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Mauricio González es un Full Stack Developer con 5+ años de experiencia en React, Next.js, NestJS, TypeScript, Flutter y PostgreSQL, basado en Ciudad del Este, Paraguay. Disponible para trabajo remoto en Latinoamérica.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué tecnologías domina Mauricio González?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'React, Next.js, NestJS, Node.js, TypeScript, Flutter, PostgreSQL, MySQL, Docker, Redis y Firebase.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Está disponible para trabajo remoto?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí, Mauricio González está disponible para posiciones remotas, híbridas y presenciales en Latinoamérica.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cómo contratar a Mauricio González?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Podés contactar a Mauricio González a través del formulario en mauridevcde.pro, por LinkedIn en linkedin.com/in/ing-mauricio-gonzalez o por email en mauridevcde@gmail.com.',
+        },
+      },
+    ],
   },
   {
     '@context': 'https://schema.org',
