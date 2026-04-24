@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 // Genera 1 artículo de blog diario usando Groq API y escribe src/content/blog/[slug].md
 
-const fs = require('fs');
-const path = require('path');
-const https = require('https');
+import fs from 'fs';
+import path from 'path';
+import https from 'https';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const GROQ_MODEL = 'llama-3.3-70b-versatile';
