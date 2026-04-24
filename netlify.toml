@@ -4,3 +4,15 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+[[redirects]]
+  from = "https://mauridevcde.pro/*"
+  to = "https://mauriciogonzalez.dev/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.mauriciogonzalez.dev/*"
+  to = "https://mauriciogonzalez.dev/:splat"
+  status = 301
+  force = true

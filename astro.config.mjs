@@ -3,7 +3,7 @@ import svelte from '@astrojs/svelte';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://mauridevcde.pro',
+  site: 'https://mauriciogonzalez.dev',
   integrations: [
     svelte(),
     sitemap({

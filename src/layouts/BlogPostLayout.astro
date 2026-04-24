@@ -11,7 +11,7 @@ const { post } = Astro.props;
 const { title, description, keywords, tag, publishedDate, ogImage } = post.data;
 
 const slug = post.slug;
-const canonicalUrl = `https://mauridevcde.pro/blog/${slug}/`;
+const canonicalUrl = `https://mauriciogonzalez.dev/blog/${slug}/`;
 const articlePublishedTime = publishedDate.toISOString().split('T')[0];
 
 const formattedDate = publishedDate.toLocaleDateString('es-PY', {
@@ -28,18 +28,18 @@ const jsonLd = JSON.stringify({
   author: {
     '@type': 'Person',
     name: 'Mauricio González',
-    url: 'https://mauridevcde.pro',
+    url: 'https://mauriciogonzalez.dev',
   },
   publisher: {
     '@type': 'Person',
     name: 'Mauricio González',
-    url: 'https://mauridevcde.pro',
+    url: 'https://mauriciogonzalez.dev',
   },
   datePublished: articlePublishedTime,
   dateModified: articlePublishedTime,
   url: canonicalUrl,
   inLanguage: 'es',
-  image: ogImage || 'https://mauridevcde.pro/assets/mauriciogonzalezpicture.png',
+  image: ogImage || 'https://mauriciogonzalez.dev/assets/mauriciogonzalezpicture.png',
 });
 ---
 
@@ -94,7 +94,7 @@ const jsonLd = JSON.stringify({
             5+ años desarrollando aplicaciones web y móviles con React, NestJS, TypeScript y Flutter. Basado en Paraguay, disponible para trabajo remoto en Latinoamérica.
           </p>
           <div class="author-bio-links">
-            <a href="https://mauridevcde.pro" itemprop="url">mauridevcde.pro</a>
+            <a href="https://mauriciogonzalez.dev" itemprop="url">mauriciogonzalez.dev</a>
             <a href="https://www.linkedin.com/in/ing-mauricio-gonzalez" target="_blank" rel="noopener noreferrer" itemprop="sameAs">LinkedIn</a>
             <a href="https://github.com/mauridevcde" target="_blank" rel="noopener noreferrer" itemprop="sameAs">GitHub</a>
           </div>

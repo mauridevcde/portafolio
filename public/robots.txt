@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mauridevcde.pro/sitemap.xml
+Sitemap: https://mauriciogonzalez.dev/sitemap.xml
