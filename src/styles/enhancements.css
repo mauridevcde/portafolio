@@ -323,35 +323,6 @@ html[data-theme="dark"] .navbar ul li a.active {
 
 .skill-category:hover::before { transform: scaleX(1); }
 
-/* ── 10. Project cards ────────────────────────────────────────── */
-.project-card {
-  border: 1px solid var(--border-subtle) !important;
-  transition: transform .35s var(--ease-out), box-shadow .35s ease, border-color .35s ease !important;
-}
-
-.project-card:hover {
-  transform: translateY(-14px) !important;
-  box-shadow: var(--shadow-lg) !important;
-  border-color: rgba(160,82,45,.22) !important;
-}
-
-/* Tech tags */
-.project-tech span {
-  background: rgba(160,82,45,.07);
-  color: var(--primary-color);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: .8rem;
-  font-weight: 600;
-  border: 1px solid rgba(160,82,45,.15);
-  transition: background .18s ease, transform .18s var(--ease-spring);
-  display: inline-block;
-}
-
-.project-tech span:hover {
-  background: rgba(160,82,45,.16);
-  transform: scale(1.06);
-}
 
 /* ── 11. Contact items — accent left border ───────────────────── */
 .contact-item {

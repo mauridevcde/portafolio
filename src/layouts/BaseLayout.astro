@@ -83,11 +83,7 @@ const { activePage, ...headProps } = Astro.props;
               item.classList.add('visible');
             }
           });
-          document.querySelectorAll('.project-card').forEach((card) => {
-            if (card.getBoundingClientRect().top < triggerBottom) {
-              card.classList.add('visible');
-            }
-          });
+
         }
         window.addEventListener('load', checkScroll);
         window.addEventListener('scroll', checkScroll);

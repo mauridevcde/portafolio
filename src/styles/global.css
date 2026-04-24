@@ -553,15 +553,13 @@ section {
     transform: rotate(-5deg);
   }
 }
-.timeline-item,
-.project-card {
+.timeline-item {
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.6s ease-out;
 }
 
-.timeline-item.visible,
-.project-card.visible {
+.timeline-item.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -838,99 +836,14 @@ section {
 }
 
 /* Projects Section */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
+.projects {
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(197, 176, 141, 0.25);
 }
 
-.project-card {
-  background-color: var(--card-bg);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-.project-card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-.project-image {
-  height: 250px;
-  overflow: hidden;
-}
-
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition);
-}
-
-.project-card:hover .project-image img {
-  transform: scale(1.1);
-}
-
-.project-content {
-  padding: 25px;
-}
-
-.project-content h3 {
-  margin-bottom: 15px;
-  font-size: 1.5rem;
-}
-
-.project-content p {
-  margin-bottom: 20px;
-  color: var(--text-light);
-}
-
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.project-tech span {
-  background-color: rgba(160, 82, 45, 0.08);
-  color: var(--primary-color);
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.project-links {
-  display: flex;
-  gap: 15px;
-}
-
-.project-links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 600;
-  transition: var(--transition);
-}
-
-.project-links a:hover {
-  color: var(--primary-color);
-}
-
-.project-links a i {
-  font-size: 1.2rem;
+html[data-theme="dark"] .projects {
+  --glass-bg: rgba(36, 61, 50, 0.55);
+  --glass-border: rgba(197, 176, 141, 0.12);
 }
 
 /* Contact Section */
@@ -1443,9 +1356,6 @@ section {
     font-size: 2rem;
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 480px) {
