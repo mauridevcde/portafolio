@@ -1,0 +1,120 @@
+---
+import BaseHead from '../components/layout/BaseHead.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import '../styles/global.css';
+import '../styles/enhancements.css';
+import '../styles/blog.css';
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  canonicalUrl: string;
+  ogType?: 'website' | 'article' | 'profile';
+  ogImage?: string;
+  articlePublishedTime?: string;
+  jsonLd?: string;
+  pageType?: 'home' | 'blog-index' | 'blog-post';
+  activePage?: 'home' | 'blog';
+}
+
+const { activePage, ...headProps } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <BaseHead {...headProps} />
+    <slot name="head-extra" />
+  </head>
+  <body>
+    <slot name="before-header" />
+    <Header activePage={activePage} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- particles.js CDN -->
+    <script is:inline src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+
+    <!-- Scroll animations + smooth scroll + tab title -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Smooth scroll — relative anchors (#section)
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener('click', function (e) {
+            const targetId = (this as HTMLAnchorElement).getAttribute('href');
+            if (!targetId) return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              e.preventDefault();
+              const header = document.querySelector('.header') as HTMLElement;
+              const headerHeight = header ? header.offsetHeight : 0;
+              const targetPosition = (targetElement as HTMLElement).offsetTop - headerHeight;
+              window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            }
+          });
+        });
+
+        // Smooth scroll — absolute anchors (/#section) cuando ya estamos en la homepage
+        document.querySelectorAll('a[href^="/#"]').forEach((anchor) => {
+          anchor.addEventListener('click', function (e) {
+            if (window.location.pathname !== '/') return;
+            const href = (this as HTMLAnchorElement).getAttribute('href')!;
+            const targetId = href.substring(1); // "/#about" → "#about"
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              e.preventDefault();
+              const header = document.querySelector('.header') as HTMLElement;
+              const headerHeight = header ? header.offsetHeight : 0;
+              const targetPosition = (targetElement as HTMLElement).offsetTop - headerHeight;
+              window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            }
+          });
+        });
+
+        // Scroll reveal for timeline + project cards
+        function checkScroll() {
+          const triggerBottom = (window.innerHeight / 5) * 4;
+          document.querySelectorAll('.timeline-item').forEach((item) => {
+            if (item.getBoundingClientRect().top < triggerBottom) {
+              item.classList.add('visible');
+            }
+          });
+          document.querySelectorAll('.project-card').forEach((card) => {
+            if (card.getBoundingClientRect().top < triggerBottom) {
+              card.classList.add('visible');
+            }
+          });
+        }
+        window.addEventListener('load', checkScroll);
+        window.addEventListener('scroll', checkScroll);
+
+        // Intersection Observer reveal
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+        );
+        document
+          .querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-stagger')
+          .forEach((el) => revealObserver.observe(el));
+
+        // Tab title
+        const originalTitle = document.title;
+        window.addEventListener('blur', () => { document.title = '¡Contrátame! | Mauricio González'; });
+        window.addEventListener('focus', () => { document.title = originalTitle; });
+      });
+    </script>
+
+    <slot name="scripts" />
+  </body>
+</html>

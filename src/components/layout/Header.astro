@@ -1,0 +1,49 @@
+---
+interface Props {
+  activePage?: 'home' | 'blog';
+}
+const { activePage } = Astro.props;
+---
+
+<header class="header">
+  <div class="container">
+    <a href="/" class="logo">MG</a>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/#home">Inicio</a></li>
+        <li><a href="/#about">Sobre mí</a></li>
+        <li><a href="/#skills">Habilidades</a></li>
+        <li><a href="/#experience">Experiencia</a></li>
+        <li><a href="/#education">Educación</a></li>
+        <li><a href="/#projects">Proyectos</a></li>
+        <li><a href="/#services">Servicios</a></li>
+        <li><a href="/blog/" class={activePage === 'blog' ? 'active' : ''}>Blog</a></li>
+        <li><a href="/#contact">Contacto</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navbar = document.querySelector('.navbar');
+
+  if (menuToggle && navbar) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navbar.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.navbar a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navbar.classList.remove('active');
+      });
+    });
+  }
+</script>

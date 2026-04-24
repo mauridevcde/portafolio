@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DarkModeToggle from '../../components/DarkModeToggle.astro';
+import BlogFilters from '../../components/svelte/BlogFilters.svelte';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
+);
+
+const postsData = sortedPosts.map((p) => ({
+  slug: p.slug,
+  title: p.data.title,
+  description: p.data.description,
+  tag: p.data.tag,
+  tagSlug: p.data.tagSlug,
+  date: p.data.publishedDate.toISOString().split('T')[0],
+  dateFormatted: p.data.publishedDate.toLocaleDateString('es-PY', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }),
+}));
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Blog — Mauricio González Dev',
+  url: 'https://mauridevcde.pro/blog/',
+  description: 'Artículos técnicos sobre React, NestJS, TypeScript y Flutter',
+  author: {
+    '@type': 'Person',
+    name: 'Mauricio González',
+    url: 'https://mauridevcde.pro',
+  },
+});
+---
+
+<BaseLayout
+  title="Blog — Mauricio González | Desarrollador Full Stack"
+  description="Artículos técnicos sobre React, Next.js, NestJS, TypeScript y Flutter. Desarrollo Full Stack desde Paraguay para Latinoamérica."
+  keywords="blog desarrollador full stack, nestjs tutorial, react typescript, flutter tutorial, nextjs latam"
+  canonicalUrl="https://mauridevcde.pro/blog/"
+  ogType="website"
+  jsonLd={jsonLd}
+  pageType="blog-index"
+  activePage="blog"
+>
+  <DarkModeToggle slot="before-header" />
+
+  <section class="blog-hero">
+    <div class="container">
+      <h1>Blog <span>Técnico</span></h1>
+      <p>Notas sobre React, NestJS, TypeScript y Flutter. Desarrollo Full Stack desde Paraguay para toda Latinoamérica.</p>
+      <div class="blog-hero-stats">
+        <span><i class="fas fa-file-alt"></i> Artículos técnicos</span>
+        <span><i class="fas fa-globe"></i> En español</span>
+        <span><i class="fas fa-rocket"></i> Full Stack</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section blog-list">
+    <div class="container">
+      <BlogFilters client:load posts={postsData} />
+    </div>
+  </section>
+</BaseLayout>

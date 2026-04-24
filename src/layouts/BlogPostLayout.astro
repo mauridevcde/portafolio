@@ -1,0 +1,95 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import DarkModeToggle from '../components/DarkModeToggle.astro';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, description, keywords, tag, publishedDate, ogImage } = post.data;
+
+const slug = post.slug;
+const canonicalUrl = `https://mauridevcde.pro/blog/${slug}/`;
+const articlePublishedTime = publishedDate.toISOString().split('T')[0];
+
+const formattedDate = publishedDate.toLocaleDateString('es-PY', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  author: {
+    '@type': 'Person',
+    name: 'Mauricio González',
+    url: 'https://mauridevcde.pro',
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Mauricio González',
+    url: 'https://mauridevcde.pro',
+  },
+  datePublished: articlePublishedTime,
+  dateModified: articlePublishedTime,
+  url: canonicalUrl,
+  inLanguage: 'es',
+  image: ogImage || 'https://mauridevcde.pro/assets/mauriciogonzalezpicture.png',
+});
+---
+
+<BaseLayout
+  title={`${title} | Mauricio González Dev`}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+  ogType="article"
+  ogImage={ogImage}
+  articlePublishedTime={articlePublishedTime}
+  jsonLd={jsonLd}
+  pageType="blog-post"
+  activePage="blog"
+>
+  <DarkModeToggle slot="before-header" />
+  <div class="reading-progress" id="readingProgress" slot="before-header"></div>
+
+  <article class="blog-post">
+    <div class="container blog-post-container">
+      <header class="blog-post-header">
+        <nav class="blog-breadcrumb">
+          <a href="/">Inicio</a> › <a href="/blog/">Blog</a> › {title}
+        </nav>
+        <div class="blog-post-meta">
+          <span class="blog-tag">{tag}</span>
+          <time datetime={articlePublishedTime}>{formattedDate}</time>
+          <span class="blog-author">por <a href="/">Mauricio González</a></span>
+        </div>
+        <h1>{title}</h1>
+        <p class="blog-post-intro">{description}</p>
+      </header>
+
+      <div class="blog-post-content">
+        <slot />
+      </div>
+
+      <footer class="blog-post-footer">
+        <p>¿Preguntas o sugerencias? <a href="/#contact">Escribime</a> o encontrame en <a href="https://www.linkedin.com/in/ing-mauricio-gonzalez" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+        <a href="/blog/" class="btn btn-secondary">← Volver al blog</a>
+      </footer>
+    </div>
+  </article>
+
+  <script slot="scripts">
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const progress = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+      const bar = document.getElementById('readingProgress');
+      if (bar) bar.style.width = progress + '%';
+    });
+  </script>
+</BaseLayout>

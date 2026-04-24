@@ -31,7 +31,7 @@
 }
 
 /* Mode Oscuro - Mantiene la paleta Calm pero más clara */
-[data-theme="dark"] {
+html[data-theme="dark"] {
   --primary-color: var(--sienna);
   --primary-hover: #C17A4E;
   --secondary-color: var(--oak);
@@ -80,11 +80,11 @@
   display: none;
 }
 
-[data-theme="dark"] #darkModeToggle .fa-moon {
+html[data-theme="dark"] #darkModeToggle .fa-moon {
   display: none;
 }
 
-[data-theme="dark"] #darkModeToggle .fa-sun {
+html[data-theme="dark"] #darkModeToggle .fa-sun {
   display: block;
 }
 

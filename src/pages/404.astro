@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DarkModeToggle from '../components/DarkModeToggle.astro';
+---
+
+<BaseLayout
+  title="404 — Página no encontrada | Mauricio González"
+  description="La página que buscás no existe."
+  canonicalUrl="https://mauridevcde.pro/404/"
+  ogType="website"
+>
+  <DarkModeToggle slot="before-header" />
+
+  <section class="section" style="min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center;">
+    <div class="container">
+      <h1 style="font-size: 6rem; margin-bottom: 1rem;">404</h1>
+      <h2>Página no encontrada</h2>
+      <p>La página que buscás no existe o fue movida.</p>
+      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/" class="btn btn-primary">Ir al inicio</a>
+        <a href="/blog/" class="btn btn-secondary">Ver el blog</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

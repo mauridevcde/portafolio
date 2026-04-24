@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const latestPosts = posts
+  .sort((a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime())
+  .slice(0, 2);
+---
+
+<section class="section blog-preview">
+  <div class="container">
+    <h2 class="section-title reveal">Últimos <span>Artículos</span></h2>
+    <p class="section-subtitle reveal">Notas técnicas sobre React, NestJS, TypeScript y Flutter</p>
+    <div class="blog-grid reveal-stagger">
+      {latestPosts.map((post) => (
+        <article class="blog-card">
+          <div class="blog-card-content">
+            <span class="blog-tag">{post.data.tag}</span>
+            <h3>
+              <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+            </h3>
+            <p>{post.data.description}</p>
+            <a href={`/blog/${post.slug}/`} class="blog-read-more">Leer artículo →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="blog-cta reveal">
+      <a href="/blog/" class="btn btn-secondary">Ver todos los artículos</a>
+    </div>
+  </div>
+</section>

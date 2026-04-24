@@ -1,0 +1,113 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  canonicalUrl: string;
+  ogType?: 'website' | 'article' | 'profile';
+  ogImage?: string;
+  articlePublishedTime?: string;
+  jsonLd?: string;
+  pageType?: 'home' | 'blog-index' | 'blog-post';
+}
+
+const {
+  title,
+  description,
+  keywords,
+  canonicalUrl,
+  ogType = 'website',
+  ogImage = 'https://mauridevcde.pro/assets/mauriciogonzalezpicture.png',
+  articlePublishedTime,
+  jsonLd,
+  pageType,
+} = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="canonical" href={canonicalUrl} />
+<meta name="robots" content={pageType === 'blog-post' ? 'index, follow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'} />
+
+<!-- Anti-FOUC dark mode: runs synchronously before any CSS -->
+<script is:inline>
+  const t = localStorage.getItem('theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+</script>
+
+<!-- Primary meta -->
+<title>{title}</title>
+<meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
+<meta name="author" content="Mauricio González" />
+
+{pageType === 'home' && (
+  <>
+    <meta name="geo.region" content="PY-3" />
+    <meta name="geo.placename" content="Ciudad del Este, Paraguay" />
+    <meta name="geo.position" content="-25.5167;-54.6167" />
+    <meta name="ICBM" content="-25.5167, -54.6167" />
+  </>
+)}
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Mauricio González — Full Stack Developer en Ciudad del Este, Paraguay" />
+<meta property="og:locale" content="es_PY" />
+<meta property="og:locale:alternate" content="es_ES" />
+
+{ogType === 'profile' && (
+  <>
+    <meta property="profile:first_name" content="Mauricio" />
+    <meta property="profile:last_name" content="González" />
+    <meta property="profile:username" content="ing-mauricio-gonzalez" />
+  </>
+)}
+
+{ogType === 'article' && articlePublishedTime && (
+  <>
+    <meta property="article:author" content="Mauricio González" />
+    <meta property="article:published_time" content={articlePublishedTime} />
+  </>
+)}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content="Mauricio González — Full Stack Developer" />
+
+<!-- PWA / Apple -->
+<meta name="theme-color" content="#A0522D" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="MG Dev" />
+<link rel="apple-touch-icon" href="/assets/mauriciogonzalezpicture.png" />
+<link rel="manifest" href="/manifest.json" />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" />
+
+<!-- Font Awesome -->
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+{pageType === 'home' && (
+  <link rel="preload" as="image" href="/assets/mauriciogonzalezpicture.png" type="image/webp" />
+)}
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='68' font-family='Arial' font-size='52' font-weight='bold' fill='white' text-anchor='middle'>MG</text></svg>" />
+
+<!-- JSON-LD -->
+{jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
