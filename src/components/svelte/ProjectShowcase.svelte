@@ -49,7 +49,7 @@
   }
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <div
   class="showcase-outer"
   role="region"
@@ -72,7 +72,7 @@
       {@const d = ((i - activeIndex) % n + n) % n}
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <a
-        href="/proyectos/{project.slug}"
+        href="/proyectos/{project.slug}/"
         class="showcase-card"
         class:active={d === 0}
         class:adjacent={d === 1 || d === n - 1}

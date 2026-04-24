@@ -1,0 +1,311 @@
+# NexusTelecom - Sistema de Gestión de Servicios de Telecomunicaciones
+
+---
+
+## Resumen del Proyecto
+
+**NexusTelecom** es una plataforma web integral para la gestión operacional de una empresa de telecomunicaciones en Argentina. El sistema permite administrar clientes, equipos, facturación automática, gestión de pagos y reportes financieros en tiempo real.
+
+La aplicación fue desarrollada como monorepo full-stack con el objetivo de centralizar todas las operaciones del negocio en una única solución digital, eliminando procesos manuales y papelasa.
+
+---
+
+## Tecnologías Utilizadas
+
+### Backend
+
+| Tecnología | Versión | Propósito |
+|------------|---------|----------|
+| **NestJS** | 11.x | Framework backend progresivo |
+| **TypeORM** | 0.3.27 | ORM para MySQL |
+| **MySQL** | 8.0 | Base de datos relacional |
+| **Firebase Admin** | 13.6.0 | Autenticación y gestión de identidades |
+| **Passport JWT** | 11.x | Estrategia de autenticación bearer |
+| **Swagger/OpenAPI** | 11.x | Documentación automática de API |
+| **Node Schedule** | 6.0.1 | Jobs cron para facturación automática |
+
+### Frontend
+
+| Tecnología | Versión | Propósito |
+|------------|---------|----------|
+| **Next.js** | 15.5.6 | Framework React con App Router |
+| **React** | 19.0.0 | Biblioteca UI |
+| **Zustand** | 5.0.5 | Gestión de estado del cliente |
+| **React Query** | 5.77.2 | Gestión de estado del servidor |
+| **PrimeReact** | 10.9.5 | Componentes UI profesionales |
+| **Tailwind CSS** | 4.1.7 | Estilos con utility-first |
+| **jsPDF** | 3.0.4 | Generación de PDFs en el cliente |
+| **Recharts** | 3.5.1 | Gráficos y visualizaciones |
+| **Firebase Client** | 12.5.0 | SDK cliente de Firebase |
+
+### Infraestructura y DevOps
+
+| Tecnología | Propósito |
+|------------|-----------|
+| **Turborepo** | Orquestación del monorepo |
+| **Docker** | Containerización |
+| **Nginx** | Proxy reverso y serve de estáticos |
+| **GitHub Actions** | CI/CD automático |
+| **pm2** | Gestor de procesos (desarrollo) |
+
+### Herramientas de Desarrollo
+
+- **TypeScript** 5.7.3 - Tipado estático
+- **ESLint** + Prettier - Linting y formateo
+- **dayjs** - Manejo de fechas con timezone
+- **class-validator** - Validación de DTOs
+
+---
+
+## Arquitectura del Sistema
+
+### Monorepo
+
+```
+/
+├── apps/
+│   ├── backend/          # API REST NestJS
+│   └── frontend/        # App Next.js 15
+├── package.json        # Workspace raíz
+└── turbo.json         # Configuración Turborepo
+```
+
+### Stack de Arquitectura
+
+- **API Layer**: NestJS con controladores RESTful
+- **Data Layer**: TypeORM con entidades migradas a MySQL
+- **Auth Layer**: Firebase Identity + JWT Bearer
+- **Presentation Layer**: Next.js 15 App Router (client-side rendering)
+- **State Layer**: Zustand (cliente) + React Query (servidor)
+
+### Flujo de Autenticación
+
+1. Usuario se autentica con Firebase (Google/Email)
+2. Frontend recibe JWT de Firebase
+3. JWT se envía al backend en header `Authorization: Bearer <token>`
+4. FirebaseStrategy valida token con Firebase Admin SDK
+5. UsersService sincroniza usuario a la base de datos
+6. Decorador `@CurrentUser()` inyecta datos del usuario en controllers
+
+---
+
+## Módulos del Sistema
+
+### Backend (16 módulos)
+
+1. **Auth** - Autenticación Firebase y validación JWT
+2. **Users** - Gestión de usuarios del sistema
+3. **Clientes** - CRUD completo de clientes
+4. **Equipos** - Catálogo y asignación de equipos
+5. **DetalleEquipos** - Especificaciones técnicas
+6. **Provincias** - Catálogo geográfico
+7. **Ciudades** - Catálogo geográfico
+8. **Pagos** - Registro y gestión de pagos
+9. **Facturas** - Generación de facturas
+10. **NotasCredito** - Notas de crédito por anulaciones
+11. **Cotizacion** - Tipo de cambio USD/ARS
+12. **ClientWallet** - Billetera de deuda por cliente
+13. **WalletTransactions** - Historial de transacciones
+14. **Scheduler** - Facturación automática mensual
+15. **Dashboard** - Estadísticas y métricas
+16. **Health** - Health check de la API
+
+### Frontend (10 páginas)
+
+- `/` - Landing page
+- `/login` - Autenticación Firebase
+- `/dashboard` - Resumen ejecutivo con métricas
+- `/dashboard/clientes` - Gestión de clientes
+- `/dashboard/equipos` - Gestión de equipos
+- `/dashboard/facturacion` - Facturas y generación
+- `/dashboard/pagos` - Registro de pagos
+- `/dashboard/cotizacion` - Display tipo de cambio
+- `/dashboard/reportes` - Reportes financieros
+- `/dashboard/reimpresion` - Reimpresión de comprobantes
+
+---
+
+## Funcionalidades Principales
+
+### Gestión de Clientes
+
+- Crear, editar, eliminar clientes
+- Asignación geográfica (provincia/ciudad)
+- Historial de equipos asignados
+- Estado activo/inactivo
+
+### Gestión de Equipos
+
+- Catálogo de equipos con especificaciones
+- Asignación a clientes
+- Precio referencial en ARS
+- Tracking de estado
+
+### Facturación
+
+- Generación manual de facturas
+- **Facturación automática mensual** (día 1 de cada mes)
+- Cálculo automático de IVA
+- Vencimientos Configurables
+
+### Pagos
+
+- Registro de pagos
+- Soporte para pagos parciales
+- Estado: pendiente, ejecutado, anulado
+- Métodos de pago múltiples
+- Generación de comprobantes PDF
+
+### Billetera de Cliente
+
+- Deuda acumulada por cliente
+- Saldo a favor
+- Historial transactal completo
+- Operaciones de deuda/pago
+
+### Reportes
+
+- Pagos recibidos por período
+- Estado de pagos por cliente
+- Reporte individual de cliente
+- Distribución de equipos
+- Exportación a PDF
+
+---
+
+## Base de Datos
+
+### Entidades Principales (TypeORM)
+
+- `User` - Usuarios del sistema
+- `Cliente` - Clientes del negocio
+- `Equipo` - Equipos disponibles
+- `DetalleEquipo` - Especificaciones
+- `Factura` - Facturas emitidas
+- `Pago` - Pagos registrados
+- `ClientWallet` - Deuda por cliente
+- `WalletTransaction` - Historial transactal
+- `Provincia` / `Ciudad` - Geografía argentina
+
+### Convenciones
+
+- Schema: `utf8mb4`
+- Timezone: `America/Argentina/Buenos_Aires`
+- Columnas: `snake_case` (id_cliente, created_at)
+- Propiedades: `camelCase` (idCliente, createdAt)
+
+---
+
+## Despliegue
+
+### Desarrollo Local
+
+```
+docker-compose.yml
+├── MySQL (puerto 3306)
+├── Backend NestJS (puerto 4000)
+└── Frontend Next.js (puerto 3000)
+```
+
+### Producción
+
+```
+docker-compose.prod.yml
+├── MySQL (interno)
+├── Backend (interno:4000)
+├── Frontend (interno:3000)
+└── Nginx (puertos 80/443)
+    ├── Sirve frontend estático
+    └── Proxea /api/* a backend
+```
+
+### CI/CD
+
+- GitHub Actions buildea imágenes
+- Imágenespublicadas en GitHub Container Registry
+- Despliegue automático al empujar a main
+- Health checks post-deploy
+- Backups automáticos nocturnos
+
+---
+
+## Características Distintivas
+
+1. **Monorepo con Turborepo**: Un único repositorio para frontend y backend con builds optimizados
+2. **Facturación automática**: Cron job que genera facturas el día 1 de cada mes
+3. **Timezone argentina**: Sistema configurado exclusivamente para Argentina
+4. **PDFs cliente**: Generación de comprobantes en el navegador con jsPDF
+5. **Autenticación robusta**: Capa dual Firebase + JWT Bearer
+6. **Estado híbrido**: Zustand + React Query para gestión completa de estado
+7. **Docker multi-stage**: Imágenes optimizadas y securizadas
+8. **Swagger документация**: API documentada automáticamente
+
+---
+
+## Variables de Entorno
+
+### Backend
+
+```
+DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_DATABASE
+FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY
+PORT=4000
+TZ=America/Argentina/Buenos_Aires
+```
+
+### Frontend
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:4000/api
+```
+
+---
+
+## Scripts Disponibles
+
+### Backend
+
+```bash
+npm run dev          # Desarrollo con watch
+npm run build       # Build producción
+npm run start:prod  # Iniciar en producción
+npm run lint        # Linting
+npm run test        # Tests unitarios
+npm run migration:run      # Ejecutar migraciones
+npm run seed:prod          # Poblar datos iniciales
+```
+
+### Frontend
+
+```bash
+npm run dev        # Desarrollo
+npm run build      # Build producción
+npm run start      # Iniciar producción
+npm run lint       # Linting
+```
+
+---
+
+## Contribución al Proyecto
+
+Este proyecto demuestra habilidades en:
+
+- ✅ Arquitectura full-stack con monorepo
+- ✅ Frameworks modernos (NestJS 11, Next.js 15, React 19)
+- ✅ Autenticación con Firebase + JWT
+- ✅ Base de datos relacional con TypeORM
+- ✅ Gestión de estado híbrida
+- ✅ Containerización con Docker
+- ✅ CI/CD con GitHub Actions
+- ✅ APIs RESTful documentadas con Swagger
+- ✅ Jobs cron para automatización
+- ✅ Timezone handling
+- ✅ PDF generation cliente
+
+---
+
+## Contacto
+
+Proyecto desarrollado por **Mauricio Developer**
+
+Para más información sobre la implementación o el código fuente, contactar vía GitHub.

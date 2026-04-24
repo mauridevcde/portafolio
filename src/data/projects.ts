@@ -11,6 +11,7 @@ export interface Project {
   };
   gradient: string;
   status: 'live' | 'dev';
+  images?: string[];
 }
 
 export const projects: Project[] = [
@@ -28,6 +29,38 @@ export const projects: Project[] = [
     },
     gradient: 'linear-gradient(135deg, #A0522D 0%, #C5B08D 100%)',
     status: 'dev',
+    images: [
+      '/assets/proyectos/Educconect/1.png',
+      '/assets/proyectos/Educconect/2.png',
+      '/assets/proyectos/Educconect/3.png',
+      '/assets/proyectos/Educconect/4.png',
+      '/assets/proyectos/Educconect/5.png',
+      '/assets/proyectos/Educconect/6.png',
+      '/assets/proyectos/Educconect/7.png',
+      '/assets/proyectos/Educconect/8.png',
+      '/assets/proyectos/Educconect/9.png',
+      '/assets/proyectos/Educconect/11.png',
+      '/assets/proyectos/Educconect/12.png',
+      '/assets/proyectos/Educconect/13.png',
+      '/assets/proyectos/Educconect/14.png',
+      '/assets/proyectos/Educconect/15.png',
+      '/assets/proyectos/Educconect/16.png',
+      '/assets/proyectos/Educconect/17.png',
+      '/assets/proyectos/Educconect/18.png',
+      '/assets/proyectos/Educconect/19.png',
+      '/assets/proyectos/Educconect/20.png',
+      '/assets/proyectos/Educconect/21.png',
+      '/assets/proyectos/Educconect/22.png',
+      '/assets/proyectos/Educconect/23.png',
+      '/assets/proyectos/Educconect/24.png',
+      '/assets/proyectos/Educconect/25.png',
+      '/assets/proyectos/Educconect/26.png',
+      '/assets/proyectos/Educconect/27.png',
+      '/assets/proyectos/Educconect/28.png',
+      '/assets/proyectos/Educconect/29.png',
+      '/assets/proyectos/Educconect/30.png',
+      '/assets/proyectos/Educconect/31.png',
+    ],
   },
   {
     slug: 'pos',
@@ -43,6 +76,7 @@ export const projects: Project[] = [
     },
     gradient: 'linear-gradient(135deg, #1A2B24 0%, #A0522D 100%)',
     status: 'dev',
+    images: [],
   },
   {
     slug: 'nexustelecom',
@@ -58,6 +92,26 @@ export const projects: Project[] = [
     },
     gradient: 'linear-gradient(135deg, #C5B08D 0%, #1A2B24 100%)',
     status: 'dev',
+    images: [
+      '/assets/proyectos/nexusTelecom/1.png',
+      '/assets/proyectos/nexusTelecom/2.png',
+      '/assets/proyectos/nexusTelecom/3.png',
+      '/assets/proyectos/nexusTelecom/4.png',
+      '/assets/proyectos/nexusTelecom/5.png',
+      '/assets/proyectos/nexusTelecom/6.png',
+      '/assets/proyectos/nexusTelecom/7.png',
+      '/assets/proyectos/nexusTelecom/8.png',
+      '/assets/proyectos/nexusTelecom/10.png',
+      '/assets/proyectos/nexusTelecom/11.png',
+      '/assets/proyectos/nexusTelecom/12.png',
+      '/assets/proyectos/nexusTelecom/13.png',
+      '/assets/proyectos/nexusTelecom/14.png',
+      '/assets/proyectos/nexusTelecom/15.png',
+      '/assets/proyectos/nexusTelecom/16.png',
+      '/assets/proyectos/nexusTelecom/17.png',
+      '/assets/proyectos/nexusTelecom/18.png',
+      '/assets/proyectos/nexusTelecom/19.png',
+    ],
   },
   {
     slug: 'generador-videos',
@@ -73,5 +127,6 @@ export const projects: Project[] = [
     },
     gradient: 'linear-gradient(135deg, #A0522D 0%, #1A2B24 100%)',
     status: 'dev',
+    images: [],
   },
 ];

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projects } from '../../data/projects';
+import ProjectGallery from '../../components/sections/ProjectGallery.astro';
 
 export function getStaticPaths() {
   return projects.map((project) => ({
@@ -15,7 +16,7 @@ const { project } = Astro.props;
 <BaseLayout
   title={`${project.title} — Mauricio González`}
   description={project.description}
-  canonicalUrl={`https://mauriciogonzalez.dev/proyectos/${project.slug}`}
+  canonicalUrl={`https://mauriciogonzalez.dev/proyectos/${project.slug}/`}
   activePage="home"
 >
   <section class="section proyecto-detalle">
@@ -40,24 +41,49 @@ const { project } = Astro.props;
         </div>
       </div>
 
+      <ProjectGallery images={project.images || []} title={project.title} />
+
       <div class="proyecto-body">
         <div class="descripcion-card">
-          <h2>Sobre el proyecto</h2>
+          <h2>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Sobre el proyecto
+          </h2>
           <p>{project.longDescription}</p>
         </div>
 
         <div class="tech-section">
-          <h2>Stack tecnológico</h2>
+          <h2>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            Stack tecnológico
+          </h2>
           <div class="tech-tags">
             {project.tags.map((tag) => (
-              <span class="tech-tag">{tag}</span>
+              <span class="tech-tag">
+                {tag}
+              </span>
             ))}
           </div>
         </div>
 
         {(project.links.github || project.links.demo) && (
           <div class="links-section">
-            <h2>Enlaces</h2>
+            <h2>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+              Enlaces
+            </h2>
             <div class="project-links">
               {project.links.github && project.links.github !== '#' && (
                 <a
@@ -194,12 +220,21 @@ const { project } = Astro.props;
   .descripcion-card h2,
   .tech-section h2,
   .links-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--primary-color);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     margin-bottom: 16px;
+  }
+
+  .descripcion-card h2 svg,
+  .tech-section h2 svg,
+  .links-section h2 svg {
+    flex-shrink: 0;
   }
 
   .descripcion-card p {
@@ -215,13 +250,22 @@ const { project } = Astro.props;
   }
 
   .tech-tag {
-    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--primary-color);
     background: rgba(160, 82, 45, 0.08);
     border: 1px solid rgba(160, 82, 45, 0.22);
-    padding: 6px 16px;
-    border-radius: 20px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background 200ms ease, transform 150ms ease;
+  }
+
+  .tech-tag:hover {
+    background: rgba(160, 82, 45, 0.15);
+    transform: translateY(-2px);
   }
 
   .project-links {

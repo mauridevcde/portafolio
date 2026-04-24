@@ -1,0 +1,123 @@
+# Educconect - Sistema Gerencial de Colegios
+
+## Descripción del Proyecto
+
+Plataforma SaaS multi-tenant para gestión escolar dirigida a instituciones educativas de Latinoamérica. Permite gestionar estudiantes, docentes, calificaciones, comunica dos y boletines mensuales desde un panel administrativo web (Next.js) y una aplicación móvil Flutter para padres y docentes.
+
+## Tecnologías
+
+### Backend
+- **NestJS** (^10.3.0) - Framework Node.js con arquitectura modular
+- **TypeORM** (^0.3.20) - ORM para gestión de base de datos
+- **PostgreSQL** - Base de datos relacional con arquitectura multi-tenant (DB-per-tenant)
+- **Redis** - Cache y sesiones para optimize  performance
+- **Socket.io** - Comunicación tiempo real
+- **JWT** - Autenticación con refresh tokens
+- **Firebase Admin** - Notificaciones push (FCM)
+- **Cloudflare R2** - Almacenamiento de archivos
+
+### Frontend Web
+- **Next.js 14** - App Router
+- **React 18** - Biblioteca de UI
+- **PrimeReact** (^10.5.1) - Componentes UI profesionales
+- **TailwindCSS** - Estilos
+- **Zustand** - Estado global
+- **TanStack Query** - Fetch y cache de datos
+- **React Hook Form + Zod** - Formularios y validación
+
+### App Móvil
+- **Flutter** - Framework multiplataforma
+- **Riverpod** - Gestión de estado
+- **GoRouter** - Navegación
+- **Dio** - Cliente HTTP
+- **Firebase Messaging** - Notificaciones push
+
+## Arquitectura
+
+### Multi-Tenant (DB-per-tenant)
+Cada colegio tiene su propia base de datos PostgreSQL. La base de datos central (`educonnect_central`) contiene usuarios y colegios, mientras que cada institución tiene su propia DB (`educonnect_{slug}`) con datos operativos.
+
+### Roles de Usuario
+- **superadmin**: Administración de la plataforma
+- **director**: Gestión completa del colegio
+- **coordinator**: Gestión académica
+- **secretary**: Gestión administrativa
+- **teacher**: Portal docente
+- **parent**: Portal de padres (solo app móvil)
+
+### Endpoints Principales
+```
+/api/v1/auth/*     → Autenticación
+/api/v1/admin/*    → Superadmin
+/api/v1/management/* → Director/Coordinador/Secretaria
+/api/v1/portal/*   → Padres
+/api/v1/teacher/* → Docentes
+/api/v1/students/* → Estudiantes
+/api/v1/student-grades/* → Calificaciones
+/api/v1/announcements/* → Comunicados
+```
+
+## Características Implementadas
+
+1. **Autenticación**: JWT con access token (15 min) y refresh token (7 días)
+2. **Gestión de Usuarios**: CRUD por rol con permisos definidos
+3. **Estructura Académica**: Ramas, turnos, grados, secciones, materias
+4. **Matrículas**: Wizard de 5 pasos con búsqueda de estudiantes
+5. **Calificaciones**: Registro por período académico (bimestres)
+6. **Boletines Mensuales**: Reportes PDF con notas por materia
+7. **Comunicados**: Publicación con confirmación de recepción
+8. **Portal de Padres**: Vista de hijos, comunicados y boletines
+9. **Tiempo Real**: WebSockets para comunicados y boletines nuevos
+10. **Notificaciones Push**: FCM para móvil, sockets para web
+
+## Rendimiento y Escalabilidad
+
+- Cache con Redis (TTL 30-300s)
+- Cluster mode (2 workers en producción)
+- Queries optimizadas (eliminación de N+1)
+- Índices compuestos en bases de datos
+- Capacidad: hasta 2000 usuarios concurrentes
+
+## Seguridad
+
+- JWT con access token (15 min) y refresh token (7 días) con rotación
+- Bcrypt (12 rounds) para hash de contraseñas
+- Rate limiting (200 req/60s por IP)
+- Helmet pour headers de seguridad HTTP
+- CORS configurado por entorno
+- Validación de entrada con Zod y class-validator
+- Protección OWASP Top 10 implementada
+
+## Despliegue
+
+- **Desarrollo**: Docker Compose con PostgreSQL + Redis
+- **Producción**: Docker + Nginx en VPS (Hostinger)
+- **CI/CD**: GitHub Actions → GHCR → SSH deploy
+- **Salud**: Endpoint `/api/v1/health`
+
+
+npm run seed:run
+```
+
+## URLs de Desarrollo
+
+- API: http://localhost:3000/api/v1
+- Frontend: http://localhost:3001
+- Swagger: http://localhost:3000/api/docs
+
+---
+** stack: NestJS + PostgreSQL + Redis | Next.js 14 + PrimeReact | Flutter
+** tipo: SaaS Multi-Tenant
+** estado: En producción
+
+## Contribución al Proyecto
+
+Este proyecto demuestra habilidades en:
+
+- **Desarrollo Full-Stack**: Backend NestJS + Frontend Next.js + Flutter
+- **Arquitectura Multi-Tenant**: Diseño y implementación de sistema DB-per-tenant
+- **Patrones de Seguridad**: JWT, rate limiting, hashing, validación de entrada
+- **Optimización de Rendimiento**: Cache Redis, queries batch, índices compuestos
+- **Despliegue CI/CD**: GitHub Actions, Docker, Nginx, VPS
+- **Tiempo Real**: WebSockets con Socket.io y Redis adapter
+- **Clean Architecture**: Separación de capas en backend y móvil
