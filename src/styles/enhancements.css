@@ -283,11 +283,13 @@ html[data-theme="dark"] .menu-toggle span {
 }
 
 /* Dark mode mobile navbar */
-html[data-theme="dark"] .navbar {
-  background: rgba(26, 43, 36, 0.9) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.3);
+@media (max-width: 768px) {
+  html[data-theme="dark"] .navbar {
+    background: rgba(26, 43, 36, 0.9) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 4px 0 30px rgba(0, 0, 0, 0.3);
+  }
 }
 
 html[data-theme="dark"] .navbar ul li a:hover,
