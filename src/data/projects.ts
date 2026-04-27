@@ -83,15 +83,15 @@ export const projects: Project[] = [
     title: 'NexusTelecom',
     category: 'Backend',
     description:
-      'Plataforma integral de gestión operacional para empresas de telecomunicaciones: clientes, facturación automática y soporte técnico.',
+      'Plataforma integral de gestión operacional para una empresa real de telecomunicaciones en Argentina. En producción y en uso diario.',
     longDescription:
-      'NexusTelecom es una plataforma backend robusta desarrollada como monorepo con Turborepo para una empresa de telecomunicaciones en Argentina. Implementé un sistema de facturación automática que genera facturas mensuales el día 1 de cada mes mediante jobs cron, gestión completa de clientes con asignación geográfica (provincias y ciudades), control de equipos en campo con tracking de estado, billetera de deuda por cliente con historial de transacciones completo, y reportes financieros en tiempo real con visualizaciones. La autenticación utiliza Firebase Identity junto con JWT Bearer para una capa de seguridad dual. Toda la API está documentada con Swagger/OpenAPI.',
+      'NexusTelecom es un proyecto real actualmente en producción, utilizado a diario por una empresa de telecomunicaciones en Argentina. La plataforma backend robusta fue desarrollada como monorepo con Turborepo. Implementé un sistema de facturación automática que genera facturas mensuales el día 1 de cada mes mediante jobs cron, gestión completa de clientes con asignación geográfica (provincias y ciudades), control de equipos en campo con tracking de estado, billetera de deuda por cliente con historial de transacciones completo, y reportes financieros en tiempo real con visualizaciones. La autenticación utiliza Firebase Identity junto con JWT Bearer para una capa de seguridad dual. Toda la API está documentada con Swagger/OpenAPI.',
     tags: ['NestJS', 'MySQL', 'TypeORM', 'Firebase', 'Next.js', 'JWT', 'Turborepo', 'Docker'],
     links: {
       github: '#',
     },
     gradient: 'linear-gradient(135deg, #C5B08D 0%, #1A2B24 100%)',
-    status: 'dev',
+    status: 'live',
     images: [
       '/assets/proyectos/nexusTelecom/1.webp',
       '/assets/proyectos/nexusTelecom/2.webp',
