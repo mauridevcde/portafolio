@@ -1,6 +1,6 @@
 ---
 title: "Flutter Dart Para Apps Móviles"
-description: "Aprende a desarrollar apps móviles con Flutter y Dart en este tutorial completo para Latinoamérica, incluyendo ejemplos de código y consejos prácticos para empezar a crear tus propias aplicaciones móviles con flutter tutorial y app movil flutter latam"
+description: "Aprende a desarrollar apps móviles con Flutter y Dart en este tutorial completo para Latinoamérica, incluyendo ejemplos de código y consejos prácticos para crear tus propias aplicaciones móviles."
 keywords: "Flutter, Dart, app móvil, flutter tutorial, flutter dart, app movil flutter latam"
 tag: "Flutter · Dart"
 tagSlug: "flutter"

@@ -273,6 +273,8 @@ async function main() {
     throw new Error('Se esperaban al menos 2 secciones');
   }
 
+  data.metaDescription = data.metaDescription.substring(0, 200);
+
   // Añadir conclusión como última sección si no está
   if (data.conclusion) {
     data.sections.push({ heading: 'Conclusión', content: `<p>${data.conclusion}</p>` });

@@ -1,6 +1,6 @@
 ---
 title: "Docker y DevOps"
-description: "Aprende a utilizar Docker y DevOps en tu proyecto con este tutorial práctico. Descubre cómo mejorar la eficiencia y la colaboración en tu equipo de desarrollo con contenedores Docker y DevOps en Latam."
+description: "Aprende a utilizar Docker y DevOps en tu proyecto. Descubre cómo mejorar la eficiencia y colaboración en tu equipo de desarrollo con contenedores Docker y prácticas DevOps en Latam."
 keywords: "docker tutorial, devops latam, contenedores docker, docker y devops, desarrollo de software"
 tag: "DevOps · Docker"
 tagSlug: "devops"
